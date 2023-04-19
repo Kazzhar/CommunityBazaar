@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from "@supabase/supabase-js";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { getAuth, getUserByPhoneNumber } from "firebase/auth";
-const supabase = createClient(supabaseUrl, supabaseKey)
-const supabaseUrl = 'https://pibocyssfkqnnshfrnnc.supabase.co'
-const supabaseKey ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc'
+const supabaseUrl = "https://pibocyssfkqnnshfrnnc.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc";
+const supabase = createClient(supabaseUrl, supabaseKey);
 function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -14,23 +14,10 @@ function LoginPage() {
     setPhoneNumber(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(supabase)
-    // const auth = getAuth();
-
-    // getUserByPhoneNumber(auth, phoneNumber) // Use the auth constant here
-    //   .then((userRecord) => {
-    //     // See the UserRecord reference doc for the contents of userRecord.
-
-    //     console.log(`Successfully fetched user data:  ${userRecord.toJSON()}`);
-    //   })
-
-    //   .catch((error) => {
-    //     console.log("Error fetching user data:", error);
-
-    //     console.log("User does not exist");
-    //   });
+    const { data, error } = await supabase.from("users").select();
+    console.log(data)
   };
   const navigate = useNavigate();
 
