@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { authentication } from "../../firebase";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+// import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./PhoneAuth.css";
 import { createClient } from "@supabase/supabase-js";
@@ -13,18 +13,18 @@ function PhoneAuth() {
   const [phoneNumber, setPhoneNumber] = useState(countryCode);
   const [expandForm, setExpandForm] = useState(false);
   const [OTP, setOTP] = useState("");
-  const generateRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-        },
-      },
-      authentication
-    );
-  };
+  //   const generateRecaptcha = () => {
+  //     window.recaptchaVerifier = new RecaptchaVerifier(
+  //       "recaptcha-container",
+  //       {
+  //         size: "invisible",
+  //         callback: (response) => {
+  //           // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //         },
+  //       },
+  //       authentication
+  //     );
+  //   };
   const navigate = useNavigate();
   const requestOTP = async (e) => {
     e.preventDefault();
@@ -37,30 +37,52 @@ function PhoneAuth() {
       if (data.length) {
         console.log("user exists");
       } else {
-        const uuid = crypto.randomUUID();
-        // const { error } = await supabase
+        // const uuid = crypto.randomUUID();
+        // const { error1 } = await supabase
         //   .from("users")
         //   .insert({ id: uuid, phone_number: phoneNumber });
         console.log("user created");
-        const { otpdata, error } = await supabase.auth.signInWithOtp({
+        const { user, error } = await supabase.auth.signInWithOtp({
           phone: phoneNumber,
         });
-        console.log(otpdata)
+        console.log("the otp has been sent");
+        console.log("User: ", user);
+        console.log("Error: ", error);
       }
     }
   };
 
   const verifyOTP = async (e) => {
     let otp = e.target.value;
+
     setOTP(otp);
+
     if (otp.length === 6) {
       console.log(otp);
-      const { data, error } = await supabase.auth.verifyOTP({
-        phone: phoneNumber,
-        token: otp,
-      });
+
+      try {
+        let { session, error } = await supabase.auth.verifyOtp({
+          phone: phoneNumber,
+
+          token: otp,
+
+          type: "sms",
+        });
+
+        if (error) {
+          console.error("Error verifying OTP:", error.message);
+        } else {
+          console.log("OTP verified successfully");
+          console.log("navigating to the sign up page");
+          navigate("/signup")
+
+        }
+      } catch (err) {
+        console.error("Error during OTP verification:", err.message);
+      }
     }
   };
+
   return (
     <div className="formContainer">
       <form onSubmit={requestOTP}>
