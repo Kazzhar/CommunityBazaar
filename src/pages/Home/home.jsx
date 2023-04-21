@@ -1,10 +1,10 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import EmptyList from "../../Components/common/EmptyList";
 import BlogList from "../../Components/Home/BlogList";
 import Header from "../../Components/Home/Header";
 import SearchBar from "../../Components/Home/SearchBar";
 import { blogList } from "../../config/data";
-
+import "./home.css";
 export const Home = () => {
   const [blogs, setBlogs] = useState(blogList);
   const [searchKey, setSearchKey] = useState("");
@@ -31,7 +31,9 @@ export const Home = () => {
     <React.Fragment>
       <div>
         {/* Page Header */}
-        <Header />
+        <div className="header-wrapper">
+          <Header />
+        </div>
         {/* Search Bar */}
         <SearchBar
           value={searchKey}
@@ -39,7 +41,6 @@ export const Home = () => {
           formSubmit={handleSearchBar}
           handleSearchKey={(e) => setSearchKey(e.target.value)}
         />
-
         {/* Blog List & Empty View */}
         {!blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}
       </div>

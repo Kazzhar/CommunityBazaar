@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage/landing_page";
 import { Home } from "./pages/Home/home";
 import { HomePage } from "./pages/HomePage/home_page";
+import { Blog } from "./pages/Blog/blog";
 import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
 import LoginPage from "./pages/login/login";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/phone-auth" element={<PhoneAuth />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/blog/:id" element={<Blog />} />
           </Routes>
         </Router>
         {/* </ShopContextProvider> */}
