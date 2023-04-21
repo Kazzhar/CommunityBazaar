@@ -1,0 +1,1 @@
+export var curr_user;

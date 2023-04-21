@@ -4,13 +4,15 @@ import { authentication } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import "./PhoneAuth.css";
 import { createClient } from "@supabase/supabase-js";
+import { usePhoneNumber } from "../../Context/PhoneNumberContext";
 const supabaseUrl = "https://pibocyssfkqnnshfrnnc.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc";
 const supabase = createClient(supabaseUrl, supabaseKey);
 function PhoneAuth() {
   const countryCode = "+91";
-  const [phoneNumber, setPhoneNumber] = useState(countryCode);
+  // const [phoneNumber, setPhoneNumber] = useState(countryCode);
+  const { phoneNumber, setPhoneNumber } = usePhoneNumber();
   const [expandForm, setExpandForm] = useState(false);
   const [OTP, setOTP] = useState("");
   //   const generateRecaptcha = () => {
@@ -73,9 +75,21 @@ function PhoneAuth() {
           console.error("Error verifying OTP:", error.message);
         } else {
           console.log("OTP verified successfully");
-          console.log("navigating to the sign up page");
-          navigate("/signup")
 
+          // Display the confirmation message (you can customize this as needed)
+
+          const confirmationMessage =
+            "OTP verification successful! Redirecting to Sign Up page...";
+          alert(confirmationMessage);
+
+          // Set a delay (in milliseconds) before navigating to the /signup path
+
+          const delay = 2000; // 2 seconds
+          setTimeout(() => {
+            console.log("Navigating to the Sign Up page");
+
+            navigate("/signup");
+          }, delay);
         }
       } catch (err) {
         console.error("Error during OTP verification:", err.message);

@@ -1,87 +1,150 @@
-import React, { useState } from 'react';
-import { createClient } from '@supabase/supabase-js'
-import './sign-up.css'
-const supabaseUrl = 'https://pibocyssfkqnnshfrnnc.supabase.co'
-const supabaseKey ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc'
+  import React, { useState } from "react";
+  import { createClient } from "@supabase/supabase-js";
+  import "./sign-up.css";
+  import { usePhoneNumber } from "../../Context/PhoneNumberContext";
+  // import { curr_user } from "../../services/UserService";
+  const supabaseUrl = "https://pibocyssfkqnnshfrnnc.supabase.co";
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc";
+  const supabase = createClient(supabaseUrl, supabaseKey);
+  function SignUpForm() {
+    const [name, setName] = useState("");
+    const [adhaarNumber, setAdhaarNumber] = useState("");
+    const [dob, setDob] = useState("");
+    const [gender, setGender] = useState("");
+    const [image, setImage] = useState(null);
+    const { phoneNumber, setPhoneNumber } = usePhoneNumber();
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    };
 
-const supabase = createClient(supabaseUrl, supabaseKey)
-function SignUpForm() {
-  const [name, setName] = useState('');
-  const [adhaarNumber, setAdhaarNumber] = useState('');
-  const [dob, setDob] = useState('');
-  const [gender, setGender] = useState('');
-  const [image, setImage] = useState(null);
+    const handleAdhaarNumberChange = (event) => {
+      setAdhaarNumber(event.target.value);
+    };
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+    const handleDobChange = (event) => {
+      setDob(event.target.value);
+    };
 
-  const handleAdhaarNumberChange = (event) => {
-    setAdhaarNumber(event.target.value);
-  };
+    const handleGenderChange = (event) => {
+      setGender(event.target.value);
+    };
 
-  const handleDobChange = (event) => {
-    setDob(event.target.value);
-  };
+    const handleImageChange = (event) => {
+      setImage(event.target.files[0]);
+    };
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
+    const uploadImage = async (file) => {
+      const uniqueName = Date.now() + "-" + file.name;
 
-  const handleImageChange = (event) => {
-    setImage(event.target.files[0]);
-  };
+      const filePath = `adhaarImages/${uniqueName}`;
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!name || !adhaarNumber || !dob || !gender || !image) {
-      alert('Please fill out all fields');
-      return;
-    }
-    if (!image.type.startsWith('image/')) {
-      alert('Please upload an image file');
-      return;
-    }
-    event.preventDefault();
-    // Here you can add the code to send the data to the server
-    // using fetch() or Axios
-  };
+      const { error } = await supabase.storage
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} required/>
-      </label>
-      <br />
-      <label>
-        Adhaar Number:
-        <input type="text" value={adhaarNumber} onChange={handleAdhaarNumberChange} required/>
-      </label>
-      <br />
-      <label>
-        Date of Birth:
-        <input type="date" value={dob} onChange={handleDobChange} required/>
-      </label>
-      <br />
-      <label>
-        Gender:
-        <select value={gender} onChange={handleGenderChange} required>
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        Image of Adhaar Card:
-        <input type="file" onChange={handleImageChange} required/>
-      </label>
-      <br />
-      <button type="submit">Upload</button>
-    </form>
-  );
-}
+        .from("adhaar_images")
 
-export default SignUpForm;
+        .upload(filePath, file);
+
+      if (error) {
+        console.error("Error uploading image:", error);
+      } else {
+        console.log("Image uploaded successfully");
+
+        return filePath;
+      }
+    };
+    // export var curr_user;
+
+    const storeImageUrl = async (imagePath) => {
+      const imageUrl = `https://pibocyssfkqnnshfrnnc.supabase.co/storage/v1/object/public/adhaar_images/${imagePath}`;
+
+      const uuid = crypto.randomUUID();
+
+      const {  error } = await supabase
+
+        .from("users")
+
+        .insert({ user_name: name, id: uuid, phone_number: phoneNumber, adhaar_image_ref: imageUrl, gender: gender, date_of_birth: dob, adhaar_number: adhaarNumber });
+        // .select();
+
+      if (error) {
+        console.error("Error storing image URL:", error);
+      } else {
+        console.log("Image URL stored successfully");
+        // console.log(data);
+        // curr_user={
+        //   id:uuid,
+        //   phone_number: phoneNumber,
+        //   adhaar_number: adhaarNumber,
+        //   name: name,
+        //   dob: dob,
+        // }
+      }
+    };
+
+    const handleSubmit = async (event) => {
+      console.log("this is the phone number", phoneNumber);
+      const uuid = crypto.randomUUID();
+      console.log(uuid);
+      event.preventDefault();
+      if (!name || !adhaarNumber || !dob || !gender || !image) {
+        alert("Please fill out all fields");
+        return;
+      }
+      if (!image.type.startsWith("image/")) {
+        alert("Please upload an image file");
+        return;
+      }
+      event.preventDefault();
+      // Here you can add the code to send the data to the server
+      // using fetch() or Axios
+      const imagePath = await uploadImage(image);
+
+      if (imagePath) {
+        await storeImageUrl(imagePath);
+      }
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={handleNameChange} required />
+        </label>
+        <br />
+        <label>
+          Adhaar Number:
+          <input
+            type="text"
+            value={adhaarNumber}
+            onChange={handleAdhaarNumberChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Date of Birth:
+          <input type="date" value={dob} onChange={handleDobChange} required />
+        </label>
+        <br />
+        <label>
+          Gender:
+          <select value={gender} onChange={handleGenderChange} required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Image of Adhaar Card:
+          <input type="file" onChange={handleImageChange} required />
+        </label>
+        <br />
+        <button type="submit">Upload</button>
+      </form>
+    );
+  }
+
+  export default SignUpForm;
