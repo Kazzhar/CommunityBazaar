@@ -3,7 +3,7 @@
   import "./sign-up.css";
   import { usePhoneNumber } from "../../Context/PhoneNumberContext";
   // import { curr_user } from "../../services/UserService";
-  import { supabase } from "../../config/superbaseClient";
+  import { supabase } from "../../config/supabaseClient";
   
   function SignUpForm() {
     const [name, setName] = useState("");

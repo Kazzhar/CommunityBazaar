@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { supabase } from "../../config/superbaseClient";
+import { supabase } from "../../config/supabaseClient";
 
 import "./create-post.css";
 
