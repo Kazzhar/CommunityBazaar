@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./PhoneAuth.css";
 import { createClient } from "@supabase/supabase-js";
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
-const supabaseUrl = "https://pibocyssfkqnnshfrnnc.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYm9jeXNzZmtxbm5zaGZybm5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE5MzY2MTgsImV4cCI6MTk5NzUxMjYxOH0.5xAH9Q8HoUuAi49RczmiS28E3b7pcGjEGb453HLVpZc";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "../../config/superbaseClient";
+import CreatePost from "../CreatePost/create-post";
 function PhoneAuth() {
   const countryCode = "+91";
   // const [phoneNumber, setPhoneNumber] = useState(countryCode);

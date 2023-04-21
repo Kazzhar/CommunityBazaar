@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../../config/superbaseClient";
 
 import "./create-post.css";
 
@@ -15,7 +17,7 @@ const CreatePost = () => {
 
   const [noExpiry, setNoExpiry] = useState(false);
 
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState([]);
 
   const toggleExpiryDate = () => {
     setNoExpiry(!noExpiry);
@@ -24,6 +26,84 @@ const CreatePost = () => {
       setExpiryDate("");
     }
   };
+
+
+
+  const uploadImage = async (file) => {
+    const uniqueName = Date.now() + "-" + file.name;
+
+    const filePath = `productImages/${uniqueName}`;
+
+    const { error } = await supabase.storage
+      .from("product_images")
+      .upload(filePath, file);
+
+    if (error) {
+      console.error("Error uploading image:", error);
+    } else {
+      console.log("Product Image uploaded successfully");
+      return filePath;
+    }
+  };
+  // export var curr_user;
+
+  const storeImageUrl = async (imagePath) => {
+    const imageUrl = `https://pibocyssfkqnnshfrnnc.supabase.co/storage/v1/object/public/product_images/${imagePath}`;
+
+    const p_id = crypto.randomUUID();
+
+    const { error } = await supabase
+      .from("products")
+      .insert({ name: productName, prod_id: p_id, description: productDescription, quantity: quantityAvailable , price: price, expiry: expiryDate, prod_images: imageUrl });
+      // .select();
+
+    if (error) {
+      console.error("Error storing image URL:", error);
+    } else {
+      console.log("Image URL stored successfully");
+    }
+  };
+
+  const CreateNewPost = async (event) => {
+    const p_id = crypto.randomUUID();
+    console.log(p_id);
+    event.preventDefault();
+    if (!productName || !productDescription || !quantityAvailable|| !price || !expiryDate || !image) {
+      alert("Please fill out all fields");
+      return;
+    }
+    console.log(image.type)
+    // if (!image.type.startsWith("image/")) {
+    //   alert("Please upload an image file");
+    //   return;
+    // }
+    event.preventDefault();
+    // Here you can add the code to send the data to the server
+    // using fetch() or Axios
+    const imagePath = await uploadImage(image);
+
+    if (imagePath) {
+      await storeImageUrl(imagePath);
+    }
+  };
+
+  // const CreateNewPost = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { data, error } = await supabase.from('products').insert(productName, productDescription, quantityAvailable, price, expiryDate);
+  //     if (error) {
+  //       throw error;
+  //     }
+  //     console.log('Data inserted successfully:', data);
+  //     setFormData({
+  //       name: '',
+  //       email: '',
+  //       message: '',
+  //     });
+  //   } catch (error) {
+  //     console.error('Error inserting data:', error.message);
+  //   }
+  // };
 
   return (
     <div className="create-post-overlay">
@@ -93,17 +173,17 @@ const CreatePost = () => {
 
           <label htmlFor="no-expiry">Not Applicable</label>
 
-          <label htmlFor="images">Upload Images:</label>
+          <label htmlFor="image">Upload Images:</label>
 
           <input
             type="file"
-            id="images"
+            id="image"
             accept="image/*"
             multiple
-            onChange={(e) => setImages(e.target.files)}
+            onChange={(e) => setImage(e.target.files[0])}
           />
 
-          <button type="submit">Submit</button>
+          <button type="submit" onClick={CreateNewPost}>Submit</button>
         </form>
       </div>
     </div>
