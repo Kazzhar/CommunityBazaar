@@ -87,12 +87,9 @@ const Navbar = () => {
         {/* <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a> */}
-        <button
-          className="primary-button"
-          onClick={() => navigate("/phone-auth")}
-        >
+        <button className="primary-button" onClick={() => navigate("/phone-auth")}>
           {" "}
-          <IoPersonSharp size={22} /> Sign in{" "}
+          <IoPersonSharp size={22} /> Sign Up{" "}
         </button>
       </div>
       <div className="navbar-menu-container">

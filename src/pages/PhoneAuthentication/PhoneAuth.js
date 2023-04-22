@@ -8,6 +8,7 @@ import { usePhoneNumber } from "../../Context/PhoneNumberContext";
 import { supabase } from "../../config/superbaseClient";
 import CreatePost from "../CreatePost/create-post";
 function PhoneAuth() {
+  const navigate = useNavigate();
   const countryCode = "+91";
   // const [phoneNumber, setPhoneNumber] = useState(countryCode);
   const { phoneNumber, setPhoneNumber } = usePhoneNumber();
@@ -25,17 +26,46 @@ function PhoneAuth() {
   //       authentication
   //     );
   //   };
-  const navigate = useNavigate();
+  const fetchPhoneNumbers = async () => {
+    // Query the table to get all rows
+    console.log("inside fetch func")
+    const { data, error } = await supabase
+
+      .from("users")
+
+      .select("phone_number");
+    console.log("Data:", data)
+    console.log("Error: ", error)
+
+    if (error) {
+      console.error("Error fetching phone numbers:", error);
+    } else {
+      // Loop through the results and print each phone_number
+
+      data.forEach((row) => {
+        console.log(row.phone_number);
+      });
+    }
+  };
+
   const requestOTP = async (e) => {
     e.preventDefault();
     if (phoneNumber.length >= 12) {
       setExpandForm(true);
+      console.log("this is the phone number", phoneNumber);
+      console.log("querying all the phone numbers in the database")
+      fetchPhoneNumbers();
+      console.log("finished querying phone_number")
       const { data, error } = await supabase
         .from("users")
         .select("phone_number")
         .eq("phone_number", phoneNumber);
       if (data.length) {
         console.log("user exists");
+        alert("User already exists, redirecting to login...");
+        setTimeout(() => {
+          navigate("/login");
+        }, 100);
       } else {
         // const uuid = crypto.randomUUID();
         // const { error1 } = await supabase
