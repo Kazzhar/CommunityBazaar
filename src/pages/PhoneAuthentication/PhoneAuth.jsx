@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import "./PhoneAuth.css";
 import { createClient } from "@supabase/supabase-js";
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
-import { supabase } from "../../config/superbaseClient";
+import { supabase } from "../../config/supabaseClient";
 import CreatePost from "../CreatePost/create-post";
+
 function PhoneAuth() {
   const navigate = useNavigate();
   const countryCode = "+91";

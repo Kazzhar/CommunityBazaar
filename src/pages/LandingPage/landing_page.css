@@ -5,10 +5,22 @@
   font-family: "Raleway", sans-serif !important;
 }
 
-img {
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav-container > img {
+  /* padding: 10px; */
+  width: 300px;
+  margin-top: 10px;
+}
+
+/* img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 .App {
   min-height: 100vh;
@@ -19,7 +31,7 @@ img {
 
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 body {
@@ -30,7 +42,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 90px;
+  width: 85vw;
+  min-height: 100px;
 }
 
 .navbar-menu-container {

@@ -20,6 +20,7 @@ import { Link as PageChanger } from "react-router-dom";
 // import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 // import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const menuOptions = [
@@ -33,7 +34,6 @@ const Navbar = () => {
     },
     {
       text: "Reviews",
-
       icon: <CommentRoundedIcon />,
     },
     {
@@ -45,7 +45,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <nav>
-      <div className="nav-logo-container">{/* <img src={Logo} alt=''/> */}</div>
+      <div className="nav-logo-container">
+        <img src="../../../Assets/1.png" alt=''/>
+      </div>
       <div className="navbar-links-container">
         {/* <a href="">Home</a>
         <a href="">About</a>

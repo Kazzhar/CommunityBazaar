@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { supabase } from "../../config/superbaseClient";
+import { supabase } from "../../config/supabaseClient";
 
 import "./create-post.css";
 
@@ -87,30 +87,14 @@ const CreatePost = () => {
     }
   };
 
-  // const CreateNewPost = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { data, error } = await supabase.from('products').insert(productName, productDescription, quantityAvailable, price, expiryDate);
-  //     if (error) {
-  //       throw error;
-  //     }
-  //     console.log('Data inserted successfully:', data);
-  //     setFormData({
-  //       name: '',
-  //       email: '',
-  //       message: '',
-  //     });
-  //   } catch (error) {
-  //     console.error('Error inserting data:', error.message);
-  //   }
-  // };
-
   return (
     <div className="create-post-overlay">
       <div className="create-post-container">
         <h2>Create Post</h2>
-
+        
+        
         <form className="create-post-form">
+        
           <label htmlFor="product-name">Product Name:</label>
 
           <input
