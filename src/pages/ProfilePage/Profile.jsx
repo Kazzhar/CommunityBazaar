@@ -10,7 +10,7 @@ function Profile() {
   </div>
   
   <div className="content">
-    <h3 className="name">Advait Soni</h3>
+    <h3 className="name">John Doe</h3>
     <p className="username">Total Revenue: 15$</p>
     <p className="details">Rating: 4.8/5</p>
     <a className="effect effect-4" href="#">
