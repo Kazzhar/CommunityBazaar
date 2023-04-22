@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
-import { IoPersonSharp } from "react-icons/io5"
+import { IoPersonSharp } from "react-icons/io5";
 import {
   Box,
   Drawer,
@@ -15,7 +15,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-import { Link } from 'react-scroll';
+import { Link } from "react-scroll";
+import { Link as PageChanger } from "react-router-dom";
 // import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 // import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useNavigate } from "react-router-dom";
@@ -50,19 +51,8 @@ const Navbar = () => {
         <a href="">About</a>
         <a href="">Testimonials</a>
         <a href="">Contact</a> */}
-     
-        <Link
-          activeClass="active"
-          to="home"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-        >
-          Home
-        </Link>
-     
-       
+        {/* navigate to home */}
+        <PageChanger to="/home">Home</PageChanger>
         <Link
           activeClass="active"
           to="about"
@@ -73,7 +63,6 @@ const Navbar = () => {
         >
           About
         </Link>
-    
         <Link
           activeClass="active"
           to="testimonials"
@@ -98,7 +87,10 @@ const Navbar = () => {
         {/* <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a> */}
-        <button className="primary-button" onClick={() => navigate('/phone-auth')}> <IoPersonSharp size={22} /> Sign in </button>
+        <button className="primary-button" onClick={() => navigate("/phone-auth")}>
+          {" "}
+          <IoPersonSharp size={22} /> Sign Up{" "}
+        </button>
       </div>
       <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
