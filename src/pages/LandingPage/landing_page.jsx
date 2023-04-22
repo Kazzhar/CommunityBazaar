@@ -10,6 +10,7 @@ export const LandingPage = () => {
       <section id="home">
         <Home />
       </section>
+      
       <section id="about">
         <About />
       </section>
