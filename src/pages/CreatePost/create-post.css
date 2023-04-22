@@ -1,62 +1,47 @@
 .create-post-overlay {
   position: fixed;
-
   top: 0;
-
   left: 0;
-
+  margin: 0;
   width: 100%;
-
   height: 100%;
-
   background-color: rgba(0, 0, 0, 0.5);
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-  overflow: auto;
+  /* overflow: scroll; */
 }
 
 .create-post-container {
   background-color: #f4f4f4;
-
-  padding: 0rem;
-
   border-radius: 0rem;
-
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-
+  height: 100%;
+  overflow: scroll;
+  padding-top: 30px;
   width: 100%;
   /* max-width: 600000px; */
-  overflow: hidden;
+  overflow: scroll;
 }
+
 
 .create-post-container h2 {
   text-align: center;
-
   margin-bottom: 1.5rem;
-
-  color: #333;
-
+  color: #fca311;
   font-size: 2rem;
 }
 
 .create-post-form {
   display: flex;
-
   flex-direction: column;
-  width: auto;
+  width: 50%;
 }
 
 .create-post-form label {
   margin-top: 1.5rem;
-
   font-size: 1.2rem;
-
   font-weight: bold;
-
   color: #333;
 }
 
@@ -64,34 +49,34 @@
 .create-post-form textarea,
 .create-post-form select {
   margin-top: 0.5rem;
-
   font-size: 1rem;
-
   padding: 1rem;
-
   border-radius: 0.5rem;
-
   border: 1px solid #ccc;
-
   background-color: #fff;
-
   color: #333;
-
   font-family: "Roboto", sans-serif;
   width: 100%;
 }
 
+textarea:focus {
+  border: 2px solid #fca311;
+  outline: none;
+}
+
+input:focus {
+  border: 2px solid #fca311;
+  outline: none;
+}
+
 .create-post-form textarea {
   resize: none;
-
   width: 100%;
 }
 
 .create-post-form label[for="no-expiry"] {
   display: inline;
-
   margin-top: 0;
-
   margin-left: 0.5rem;
 }
 
@@ -101,27 +86,16 @@
 
 .create-post-form button[type="submit"] {
   margin-top: 1.5rem;
-
   padding: 1rem 2rem;
-
   border: none;
-
   border-radius: 0.5rem;
-
   background-color: #fca311;
-
   color: #fff;
-
   font-size: 1.2rem;
-
   font-weight: bold;
-
   cursor: pointer;
-
   transition: background-color 0.3s ease-in-out;
-
   font-family: "Roboto", sans-serif;
-
   text-transform: uppercase;
 }
 
@@ -132,11 +106,8 @@
 @media screen and (max-width: 600px) {
   .create-post-container {
     width: 100%;
-
     padding: 1.5rem;
-
     border-radius: 0;
-
     box-shadow: none;
   }
 }

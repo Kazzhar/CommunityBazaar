@@ -8,7 +8,11 @@ const Home = () => {
   const navigate=useNavigate();
   return (
     <div className="home-container">
+    <div className="nav-container">
+      <img src="2.png"/>
       <Navbar />
+    </div>
+    
       <div className="home-banner-container">
         <div className="home-bannerImage-container">
           {/* <img src={ BannerBackground } alt="" /> */}
