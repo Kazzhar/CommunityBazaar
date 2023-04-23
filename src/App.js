@@ -10,7 +10,9 @@ import CreatePost from "./pages/CreatePost/create-post";
 import {Community}  from "./pages/communityPage/communityPage";
 import { CommunityHome } from "./pages/CommunityHome/communityHome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
-// import Payment from "./pages/Payment /payment";
+// import Payment from "./pages/Payment/payment";
+import Payment from "./pages/Payment/payment";
+import Profile from "./pages/ProfilePage/Profile"
 function App() {
   return (
     <div className="App">
@@ -29,7 +31,8 @@ function App() {
             <Route path="/product/:prod_id" element={<Product />} />
             <Route path="/my-communities" element={<Community />}/>
             <Route path="/community-home" element={<CommunityHome/>}/>
-            
+            <Route path="/make-payment" element={<Payment/>}/>
+            <Route path="/profile" element={<Profile/>} />
           </Routes>
         </Router>
       </PhoneNumberProvider>

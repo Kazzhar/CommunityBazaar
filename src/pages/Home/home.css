@@ -4,12 +4,16 @@
     font-family: 'Montserrat', sans-serif !important;
 }
 
+.home-header {
+    margin: 0;
+}
+
 .header-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    /* height: 20vh; */
     width: 100%;
     background: #F6F6F6;
     color: #000;

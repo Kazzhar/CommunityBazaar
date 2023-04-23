@@ -26,7 +26,7 @@
   min-height: 100vh;
   width: 85vw;
   max-width: 1900px;
-  margin: 0rem auto;
+  /* margin: 0rem auto; */
 }
 
 body {
@@ -38,7 +38,7 @@ body {
   background-color: #f6f6f6;
 }
 
-nav {
+.landing-page-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -416,9 +416,13 @@ nav {
   }
 }
 
+/* .nav-logo-container {
+  width: 100px;
+} */
+
 @media (max-width: 800px) {
   .nav-logo-container {
-    max-width: 140px;
+    max-width: 100px;
   }
 
   .navbar-links-container {

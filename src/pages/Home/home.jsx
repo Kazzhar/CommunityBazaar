@@ -21,11 +21,11 @@ export const Home = () => {
       if (error) {
         console.log(error);
       } else {
-        console.log(products)
+        // console.log(products)
         setProducts(products);
       }
     };
-    console.log(products)
+    // console.log(products)
     fetchProducts();
   }, []);
 
@@ -34,11 +34,27 @@ export const Home = () => {
     handleSearchResults();
   };
 
+  // const handleSearchResults = () => {
+  //   const allProducts = products;
+  //   console.log(products)
+  //   console.log(products.map((product)=>{
+  //     return product.categories
+  //   }))
+  //   const checkCategory = (product) => {
+  //     return product
+  //   }
+  //   const filteredProducts = allProducts.filter(checkCategory);
+  //   setProducts(filteredProducts);
+  // };
+
   const handleSearchResults = () => {
     const allBlogs = products;
-    const filteredBlogs = allBlogs.filter((blog) =>
-      blog.category.toLowerCase().includes(searchKey.toLowerCase().trim())
-    );
+    const filteredBlogs = allBlogs.filter((blog) => {
+      console.log(blog)
+      return blog.categories.map((category)=>(
+        category.toLowerCase().includes(searchKey.toLowerCase().trim())
+      ))
+  });
     setProducts(filteredBlogs);
   };
 
@@ -61,7 +77,7 @@ export const Home = () => {
       <div>
         {/* Page Header */}
         <div className="header-wrapper">
-          <Header />
+          <Header className="home-header"/>
         </div>
         {/* Search Bar */}
         <SearchBar

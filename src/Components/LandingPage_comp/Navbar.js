@@ -20,6 +20,7 @@ import { Link as PageChanger } from "react-router-dom";
 // import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 // import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useNavigate } from "react-router-dom";
+import logo from "../../Assets/2.png"
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -44,9 +45,9 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   return (
-    <nav>
+    <nav className="landing-page-nav">
       <div className="nav-logo-container">
-        <img src="../../../Assets/1.png" alt=''/>
+        <img src={logo} alt=''/>
       </div>
       <div className="navbar-links-container">
         {/* <a href="">Home</a>
@@ -89,6 +90,11 @@ const Navbar = () => {
         {/* <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a> */}
+        <button className="primary-button" onClick={() => navigate("/make-payment")}>
+        {" "}
+          <IoPersonSharp size={22} /> {" "}
+        </button>
+
         <button className="primary-button" onClick={() => navigate("/phone-auth")}>
           {" "}
           <IoPersonSharp size={22} /> Sign Up{" "}
