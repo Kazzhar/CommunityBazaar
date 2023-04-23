@@ -1,9 +1,10 @@
 import React from "react";
 import "./Profile.css";
 
-function Profile() {
+export const Profile = () => {
   return (
     <div className="App">
+    
      <div className="container">
   <div className="user-image">
   <img src="https://st.depositphotos.com/1224365/2408/i/600/depositphotos_24084437-stock-photo-portrait-of-a-normal-boy.jpg" alt="" />

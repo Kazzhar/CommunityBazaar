@@ -90,7 +90,12 @@ const Navbar = () => {
         {/* <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a> */}
-        <button className="primary-button" onClick={() => navigate("/create-post")}>
+        <button className="primary-button" onClick={() => navigate("/make-payment")}>
+        {" "}
+          <IoPersonSharp size={22} /> {" "}
+        </button>
+
+        <button className="primary-button" onClick={() => navigate("/phone-auth")}>
           {" "}
           <IoPersonSharp size={22} /> Sign Up{" "}
         </button>

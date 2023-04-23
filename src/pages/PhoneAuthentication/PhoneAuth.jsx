@@ -55,7 +55,7 @@ function PhoneAuth() {
       setExpandForm(true);
       console.log("this is the phone number", phoneNumber);
       console.log("querying all the phone numbers in the database")
-      fetchPhoneNumbers();
+      // fetchPhoneNumbers();
       console.log("finished querying phone_number")
       const { data, error } = await supabase
         .from("users")
