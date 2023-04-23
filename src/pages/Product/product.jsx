@@ -13,6 +13,7 @@ export const Product = () => {
   console.log(prod_id)
   const [fetchError, setFetchError] = useState(null)
   const [products, setProducts] = useState(null)
+  const [comments, setComments] = useState(null)
 
   useEffect(() => {
     const getProduct = async () => {
@@ -49,6 +50,15 @@ export const Product = () => {
           <header>
             <p className="blog-date">Published {products.created_at}</p>
             <h1>{products.name}</h1>
+            {products.categories && (
+            <div>
+            {products.categories.map((category, i)=>(
+              <div className="category" key={i}>
+                <Chip label={category} />
+              </div>
+            ))}
+            </div>
+      )}
             {/* <div className="blog-subCategory">
               {products.subCategory.map((category, i) => (
                 <div key={i}>
@@ -57,7 +67,7 @@ export const Product = () => {
               ))}
             </div> */}
           </header>
-          <img src={products.prod_image} alt="cover" />
+          <img src={products.prod_images} alt="cover" />
           <p className="blog-desc">{products.description}</p>
         </div>
       ) : (
