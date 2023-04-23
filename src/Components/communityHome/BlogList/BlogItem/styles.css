@@ -1,6 +1,7 @@
 .blogItem-wrap {
   display: flex;
   flex-direction: column;
+
 }
 .blogItem-cover {
   width: 100%;
@@ -9,10 +10,11 @@
   border-radius: 20px;
   margin-bottom: 0.5rem;
 }
-.blogItem-wrap h3 {
+
+/* .blogItem-wrap h3 {
   margin: 0.5rem 0 1rem 0;
   flex: 1;
-}
+} */
 
 .blogItem-desc {
   position: relative;
