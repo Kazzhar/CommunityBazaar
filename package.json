@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@google-pay/button-react": "^3.0.7",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.15",
     "@supabase/supabase-js": "^2.21.0",
