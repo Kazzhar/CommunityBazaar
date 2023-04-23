@@ -1,0 +1,36 @@
+.home-header {
+  text-align: center;
+  /* margin-top: 60px; */
+  padding: 2rem 0;
+}
+
+.home-header-title {
+  font-size: 3rem;
+
+  color: #eb9823;
+
+  margin-bottom: 1rem;
+}
+
+.home-header-quote {
+  color: #eb9823;
+
+  font-size: 2rem;
+
+  margin-bottom: 1rem;
+}
+
+.quote-mark {
+  color: #b0c4de;
+}
+
+.home-header-description {
+  color: #a9a9a9;
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  /* margin-bottom: 2rem; Increase bottom margin */
+
+}

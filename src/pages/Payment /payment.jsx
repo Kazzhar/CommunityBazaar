@@ -1,7 +1,6 @@
 import logo from './logo.svg'
 import './payment.css';
-
-function App() {
+export const Payment = () => {
     return (
         <div ClassName="App">
             <h1>Payment Getway</h1>
@@ -10,4 +9,5 @@ function App() {
 
     );
 }
-export default App;
+
+export default Payment;

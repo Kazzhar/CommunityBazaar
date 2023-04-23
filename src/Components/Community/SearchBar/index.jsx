@@ -1,12 +1,17 @@
-import React from 'react';
-import './styles.css';
-
-const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch, handleLiveSearch}) => (
-  <div className='searchBar-wrap'>
+import React from "react";
+import "./styles.css";
+const SearchBar = ({
+  formSubmit,
+  value,
+  handleSearchKey,
+  clearSearch,
+  handleLiveSearch,
+}) => (
+  <div className="searchBar-wrap">
     <form onSubmit={formSubmit}>
       <input
-        type='text'
-        placeholder='Search By Category'
+        type="text"
+        placeholder="Search By Category"
         value={value}
         onChange={(event) => {
           handleSearchKey(event);
@@ -15,9 +20,10 @@ const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch, handleLive
 
           handleLiveSearch(event);
         }}
-        
       />
+
       {value && <span onClick={clearSearch}>X</span>}
+
       <button>Go</button>
     </form>
   </div>

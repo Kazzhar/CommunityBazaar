@@ -8,8 +8,9 @@ import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
 import LoginPage from "./pages/login/login";
 import CreatePost from "./pages/CreatePost/create-post";
 import {Community}  from "./pages/communityPage/communityPage";
-import { CommunityHome } from "./pages/communityHome/communityhome";
+import { CommunityHome } from "./pages/CommunityHome/communityHome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
+// import Payment from "./pages/Payment /payment";
 function App() {
   return (
     <div className="App">
@@ -26,8 +27,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/product/:prod_id" element={<Product />} />
-            <Route path="/communities" element={<Community />}/>
-            <Route path="/communityHome" element={<CommunityHome/>}/>
+            <Route path="/my-communities" element={<Community />}/>
+            <Route path="/community-home" element={<CommunityHome/>}/>
+            
           </Routes>
         </Router>
       </PhoneNumberProvider>
