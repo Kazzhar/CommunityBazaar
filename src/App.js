@@ -10,6 +10,7 @@ import CreatePost from "./pages/CreatePost/create-post";
 import {Community}  from "./pages/communityPage/communityPage";
 import { CommunityHome } from "./pages/communityHome/communityhome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
+import Payment from "./pages/Payment /payment";
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App() {
             <Route path="/product/:prod_id" element={<Product />} />
             <Route path="/communities" element={<Community />}/>
             <Route path="/communityHome" element={<CommunityHome/>}/>
+            <Route path="/make-payment" element={<Payment/>}/>
           </Routes>
         </Router>
       </PhoneNumberProvider>
