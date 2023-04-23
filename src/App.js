@@ -1,12 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Home from "./Components/LandingPage_comp/Home";
-// import About from "./Components/LandingPage_comp/About";
-// import Testimonials from "./Components/LandingPage_comp/Testimonials";
-// import Contact from "./Components/LandingPage_comp/Contact";
 import { LandingPage } from "./pages/LandingPage/landing_page";
 import { Home } from "./pages/Home/home";
-// import { HomePage } from "./pages/HomePage/home_page";
 import { Product } from "./pages/Product/product";
 import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
@@ -15,12 +10,9 @@ import CreatePost from "./pages/CreatePost/create-post";
 import {Community}  from "./pages/communityPage/communityPage";
 import { CommunityHome } from "./pages/communityHome/communityhome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
-// import Community from "./pages/Community/community";
-// onClick={() => navigate('/home')} to navigate to that particular route
 function App() {
   return (
     <div className="App">
-      {/* <ShopContextProvider> */}
       <PhoneNumberProvider>
         <Router>
           {/* <Navbar /> */}
@@ -38,7 +30,6 @@ function App() {
             <Route path="/communityHome" element={<CommunityHome/>}/>
           </Routes>
         </Router>
-        {/* </ShopContextProvider> */}
       </PhoneNumberProvider>
     </div>
   );
