@@ -103,6 +103,7 @@ const ProductItem = ({
         {/* <Link className="blogItem-link" to={`/blog/${prod_id}`}>
           ➝
         </Link> */}
+        <button className="product-cart">Add to Cart</button>
       </footer>
     </div>
   );
