@@ -12,6 +12,8 @@ import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
 import LoginPage from "./pages/login/login";
 import CreatePost from "./pages/CreatePost/create-post";
+import {Community}  from "./pages/communityPage/communityPage";
+import { CommunityHome } from "./pages/communityHome/communityhome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
 // import Community from "./pages/Community/community";
 // onClick={() => navigate('/home')} to navigate to that particular route
@@ -32,6 +34,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/product/:prod_id" element={<Product />} />
+            <Route path="/communities" element={<Community />}/>
+            <Route path="/communityHome" element={<CommunityHome/>}/>
           </Routes>
         </Router>
         {/* </ShopContextProvider> */}
