@@ -32,6 +32,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/product/:prod_id" element={<Product />} />
+            <Route path="/Payment" element ={<payment/>}/>
+            <Route path="/ProfilePage" element ={<Profile/>}/>
           </Routes>
         </Router>
         {/* </ShopContextProvider> */}

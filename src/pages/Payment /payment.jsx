@@ -1,7 +1,7 @@
-import logo from './logo.svg'
+import logo from './logo.svg';
 import './payment.css';
 
-function App() {
+function payment() {
     return (
         <div ClassName="App">
             <h1>Payment Getway</h1>
@@ -10,4 +10,4 @@ function App() {
 
     );
 }
-export default App;
+export default payment;
