@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Contact from "./Components/LandingPage_comp/Contact";
 import { LandingPage } from "./pages/LandingPage/landing_page";
 import { Home } from "./pages/Home/home";
-import { HomePage } from "./pages/HomePage/home_page";
+// import { HomePage } from "./pages/HomePage/home_page";
 import { Product } from "./pages/Product/product";
 import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
