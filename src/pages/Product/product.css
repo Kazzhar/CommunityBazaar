@@ -1,16 +1,28 @@
+.product-wrap {
+  color: #a9a9a9
+}
+
+.product-name {
+  color: #fe9e0d;
+}
+
 .blog-wrap {
-  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
   margin: 0 auto;
+  padding:0;
 }
 
 .blog-goBack {
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: #a9a9a9;
   font-weight: 500;
   margin-bottom: 2rem;
   display: block;
 }
+
 .blog-wrap header {
   text-align: center;
 }
@@ -22,7 +34,9 @@
 }
 
 .blog-wrap img {
-  width: 100%;
+  width: 90%;
+  border-radius: 50px;
+  padding: 20px;
 }
 
 .blog-subCategory {
@@ -35,4 +49,13 @@
 .blog-desc {
   padding: 1rem;
   margin-top: 1.5rem;
+  color: #a9a9a9;
+}
+
+.blog-quantity {
+  color: #a9a9a9;
+}
+
+.blog-expiry {
+  color: #a9a9a9;
 }

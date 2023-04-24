@@ -6,6 +6,8 @@ import Chip from "../../Components/common/Chip";
 import EmptyList from "../../Components/common/EmptyList";
 import "./product.css";
 import { Link } from "react-router-dom";
+import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
+
 // import ProductList from "../../Components/Home/ProductList/productList";
 
 export const Product = () => {
@@ -43,32 +45,61 @@ export const Product = () => {
   return (
     <React.Fragment>
       <Link className="blog-goBack" to="/home">
-        <span> &#8592;</span> <span>Go Back</span>
+        <span> &#8592;</span>
+        <span>Go Back</span>
       </Link>
       {products ? (
-        <div className="blog-wrap">
-          <header>
-            <p className="blog-date">Published {products.created_at}</p>
-            <h1>{products.name}</h1>
-            {products.categories && (
+        <div className="products-wrap">
+          <div className="blog-wrap">
+
             <div>
-            {products.categories.map((category, i)=>(
-              <div className="category" key={i}>
-                <Chip label={category} />
-              </div>
-            ))}
+              <img src={products.prod_images} alt="cover" />
             </div>
-      )}
-            {/* <div className="blog-subCategory">
-              {products.subCategory.map((category, i) => (
-                <div key={i}>
-                  <Chip label={category} />
+
+            <div>
+              <h1 className="product-name">{products.name}</h1>
+              <p class="product-price"> <FaRupeeSign/> {products.price} </p>
+              {products.categories && (
+                <div className="product-category">
+                {products.categories.map((category, i)=>(
+                  <div className="category" key={i}>
+                    <Chip label={category} />
+                  </div>
+                ))}
                 </div>
-              ))}
-            </div> */}
-          </header>
-          <img src={products.prod_images} alt="cover" />
-          <p className="blog-desc">{products.description}</p>
+              )}
+              <p className="blog-quantity">Quantity: {products.quantity}</p>
+              <p className="blog-desc">{products.description}</p>
+              {products.expiry && <p className="blog-expiry">Expires on: {products.expiry}</p>}
+              
+            </div>
+
+
+            {/* <header> */}
+              
+              {/* <div className="blog-subCategory">
+                {products.subCategory.map((category, i) => (
+                  <div key={i}>
+                    <Chip label={category} />
+                  </div>
+                ))}
+              </div> */}
+            {/* </header> */}
+            <div className="votes-container">
+              <p className="upvote-container">
+                <FaArrowAltCircleUp className="upvote-icon" />
+              </p>
+              <p className="vote-count">10</p>
+              <p className="downvote-container">
+                  <FaArrowAltCircleDown className="downvote-icon" />
+              </p>
+            </div>
+
+          </div>
+
+          
+
+          <p className="blog-date">Published on {products.created_at}</p>
         </div>
       ) : (
         <EmptyList />

@@ -21,11 +21,11 @@ export const Home = () => {
       if (error) {
         console.log(error);
       } else {
-        // console.log(products)
+        console.log(products)
         setProducts(products);
       }
     };
-    // console.log(products)
+    console.log(products)
     fetchProducts();
   }, []);
 
@@ -34,29 +34,29 @@ export const Home = () => {
     handleSearchResults();
   };
 
-  // const handleSearchResults = () => {
-  //   const allProducts = products;
-  //   console.log(products)
-  //   console.log(products.map((product)=>{
-  //     return product.categories
-  //   }))
-  //   const checkCategory = (product) => {
-  //     return product
-  //   }
-  //   const filteredProducts = allProducts.filter(checkCategory);
-  //   setProducts(filteredProducts);
-  // };
-
   const handleSearchResults = () => {
-    const allBlogs = products;
-    const filteredBlogs = allBlogs.filter((blog) => {
-      console.log(blog)
-      return blog.categories.map((category)=>(
-        category.toLowerCase().includes(searchKey.toLowerCase().trim())
-      ))
-  });
-    setProducts(filteredBlogs);
+    const allProducts = products;
+    console.log(products)
+    console.log(products.map((product)=>{
+      return product.categories
+    }))
+    const checkCategory = (product) => {
+      return product.categories.some(category => category === searchKey);
+    };
+    const filteredProducts = allProducts.filter(checkCategory);
+    console.log(filteredProducts)
+    setProducts(filteredProducts);
   };
+
+  // const handleSearchResults = () => {
+  //   const allProducts = products
+  //   const filteredProduct = allProducts.filter((product) => 
+  //     product.categories.map((category)=>(
+  //       category.toLowerCase().includes(searchKey.toLowerCase().trim())
+  //     ))
+  //   );
+  //   setProducts(filteredProduct);
+  // };
 
   // Clear search and show all blogs
   const handleClearSearch = () => {
