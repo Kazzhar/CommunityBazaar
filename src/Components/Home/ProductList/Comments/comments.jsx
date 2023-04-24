@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../../../../config/supabaseClient';
 
 function CommentForm(props) {
   const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+  async function fetchComments() {
+    const { data, error } = await supabase
+      .from('products')
+      .select('comments')
+      .eq('prod_id', props.productId);
+
+    if (error) {
+      console.log('Error retrieving comments:', error.message);
+    } else {
+      const comments = data[0]?.comments || [];
+      setComments(comments);
+    }
+  }
+
+  fetchComments();
+}, [props.productId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,6 +36,11 @@ function CommentForm(props) {
       console.log('Error retrieving comments:', error.message);
       return;
     }
+
+    if (!comment) {
+      return;
+    }
+
     const comments = data[0].comments || [];
     // console.log(comments)
     const newComments = [...comments, comment];
@@ -35,7 +59,7 @@ function CommentForm(props) {
   };
 
   return (
-      <div className='comment-area'>
+      <div className="comment-area">
         {/* <label> */}
           <input 
             type="comment-text" 
@@ -43,8 +67,17 @@ function CommentForm(props) {
             onChange={(event) => setComment(event.target.value)} />
         {/* </label> */}
         <button 
+            className="comment-button"
             type="comment-button" 
-            onClick={handleSubmit}>Comment</button>
+            onClick={handleSubmit}>Comment
+        </button>
+
+        <div className='all-comments'>
+        {comments.map((comment, index) => (
+          <div key={index}>{comment}</div>
+        ))}
+      </div>
+            
       </div>
   );
 }

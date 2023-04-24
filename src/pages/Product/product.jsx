@@ -7,6 +7,7 @@ import EmptyList from "../../Components/common/EmptyList";
 import "./product.css";
 import { Link } from "react-router-dom";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
+import CommentForm from "../../Components/Home/ProductList/Comments/comments";
 
 // import ProductList from "../../Components/Home/ProductList/productList";
 
@@ -97,8 +98,12 @@ export const Product = () => {
 
           </div>
 
-          
+          <div className="product-comment1">
+            <CommentForm productId={prod_id}/>
+          </div>
 
+          
+          
           <p className="blog-date">Published on {products.created_at}</p>
         </div>
       ) : (

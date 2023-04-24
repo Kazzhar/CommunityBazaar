@@ -1,3 +1,4 @@
+
 import './payment.css';
 import GooglePayButton from '@google-pay/button-react';
 
@@ -5,10 +6,10 @@ import React from 'react'
 
 export const Payment = () => {
   return (
-      <div className="App">
-      <h1> Google Pay React Demo</h1>
-      <hr />
+           <div className="App">
+<h1> Purchase This Item</h1>
 
+<GooglePayButton/>
 <GooglePayButton/>
 <GooglePayButton
   environment="TEST"
@@ -52,6 +53,4 @@ export const Payment = () => {
         
   )
 }
-
-
 export default Payment;
