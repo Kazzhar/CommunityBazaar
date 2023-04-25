@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import EmptyList from "../../Components/common/EmptyList";
 
-import BlogList from "../../Components/Community/CommunityList/communityList";
+import BlogList from "../../Components/JoinedCommunities/CommunityList/communityList";
 
-import Header from "../../Components/Community/Header";
+import Header from "../../Components/JoinedCommunities/Header";
 
 import { supabase } from "../../config/supabaseClient";
 
