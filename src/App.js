@@ -7,9 +7,11 @@ import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";
 import LoginPage from "./pages/login/login";
 import CreatePost from "./pages/CreatePost/create-post";
-import {Community}  from "./pages/communityPage/communityPage";
+// import { MyCommunityPage}  from "./pages/communityPage/communityPage";
+import { MyCommunityPage } from "./pages/myCommunityPage/myCommunityPage";
 import { CommunityHome } from "./pages/CommunityHome/communityHome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
+import { UserIdProvider } from "./Context/UserIdContext";
 // import Payment from "./pages/Payment/payment";
 import Payment from "./pages/Payment/payment";
 import Profile from "./pages/ProfilePage/Profile"
@@ -20,6 +22,7 @@ function App() {
     <div className="App">
       <ShopContextProvider>
         <PhoneNumberProvider>
+        <UserIdProvider>
           <Router>
             {/* <Navbar /> */}
             <Routes>
@@ -32,13 +35,14 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/product/:prod_id" element={<Product />} />
-              <Route path="/my-communities" element={<Community />}/>
-              <Route path="/community-home" element={<CommunityHome/>}/>
+              <Route path="/2d65d411-d402/my-communities" element={<MyCommunityPage />}/>
+              <Route path="/all-communities" element={<CommunityHome/>}/>
               <Route path="/make-payment" element={<Payment/>}/>
               <Route path="/profile" element={<Profile/>} />
               <Route path="/cart" element={<Cart />} />
             </Routes>
           </Router>
+        </UserIdProvider>
         </PhoneNumberProvider>
       </ShopContextProvider>
     </div>
