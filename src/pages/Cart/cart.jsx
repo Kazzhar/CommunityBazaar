@@ -4,8 +4,10 @@ import { ShopContext } from '../../Context/ShopContext'
 import CartItem from './cart-item'
 import "./cart.css"
 import  logo from "../../Assets/3(white).png" 
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 export const Cart = () => {
+  const comm_id=useParams()
+  console.log("this is from inside the cart, your comm_id is:", comm_id)
   const navigate = useNavigate();
   const {cartItems, getTotalCartAmount} = useContext(ShopContext)
   const totalAmount = getTotalCartAmount();
@@ -38,7 +40,6 @@ export const Cart = () => {
       <img src={logo} alt="Logo" className="navbar-logo" />
       <span className="navbar-community-name1"><b>Your Cart Items</b></span>
       <div className="navbar-links">
-        {/* <button onClick={() => navigate("/create-post")} className="navbar-link">Create Post</button> */}
       </div>
     </nav>
         <div className='cart-items'>
@@ -52,7 +53,7 @@ export const Cart = () => {
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ₹{totalAmount} </p>
-          <button onClick={() => navigate("/home")}> Continue Shopping </button>
+          <button onClick={() => navigate(`/home/${comm_id.comm_id}`)}> Continue Shopping </button>
           <button>
             Checkout
           </button>
@@ -60,7 +61,7 @@ export const Cart = () => {
       ) : (
         <div className="checkout1">
         <h3> Your Shopping Cart is Empty</h3>
-        <button onClick={()=>navigate("/home")}>Continue Shopping</button>
+        <button onClick={()=>navigate(`/home/${comm_id.comm_id}`)}>Continue Shopping</button>
         </div>
       )}
     </div>

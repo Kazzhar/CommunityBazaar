@@ -55,7 +55,17 @@ const Navbar = () => {
         <a href="">Testimonials</a>
         <a href="">Contact</a> */}
         {/* navigate to home */}
-        <PageChanger to="/home">Home</PageChanger>
+        {/* <PageChanger to="/home">Home</PageChanger> */}
+        <Link
+          activeClass="active"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+        >
+          Home
+        </Link>
         <Link
           activeClass="active"
           to="about"

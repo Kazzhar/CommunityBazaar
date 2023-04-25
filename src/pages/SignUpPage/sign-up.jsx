@@ -4,8 +4,9 @@
   import { usePhoneNumber } from "../../Context/PhoneNumberContext";
   // import { curr_user } from "../../services/UserService";
   import { supabase } from "../../config/supabaseClient";
-  
+  import { useNavigate } from "react-router-dom";
   function SignUpForm() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [adhaarNumber, setAdhaarNumber] = useState("");
     const [dob, setDob] = useState("");
@@ -69,14 +70,6 @@
         console.error("Error storing image URL:", error);
       } else {
         console.log("Image URL stored successfully");
-        // console.log(data);
-        // curr_user={
-        //   id:uuid,
-        //   phone_number: phoneNumber,
-        //   adhaar_number: adhaarNumber,
-        //   name: name,
-        //   dob: dob,
-        // }
       }
     };
 
@@ -101,6 +94,7 @@
       if (imagePath) {
         await storeImageUrl(imagePath);
       }
+      navigate("/all-communities");
     };
 
     return (

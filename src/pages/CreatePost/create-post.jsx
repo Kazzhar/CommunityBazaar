@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { supabase } from "../../config/supabaseClient";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./create-post.css";
 
 const CreatePost = () => {
+  const comm_id = useParams();
+  console.log("comm id from inside create post, from header:", comm_id.comm_id);
   const [productName, setProductName] = useState("");
 
   const [productDescription, setProductDescription] = useState("");
@@ -18,7 +21,7 @@ const CreatePost = () => {
   const [noExpiry, setNoExpiry] = useState(false);
 
   const [image, setImage] = useState([]);
-
+  const navigate = useNavigate();
   const toggleExpiryDate = () => {
     setNoExpiry(!noExpiry);
 
@@ -26,8 +29,6 @@ const CreatePost = () => {
       setExpiryDate("");
     }
   };
-
-
 
   const uploadImage = async (file) => {
     const uniqueName = Date.now() + "-" + file.name;
@@ -54,8 +55,17 @@ const CreatePost = () => {
 
     const { error } = await supabase
       .from("products")
-      .insert({ name: productName, prod_id: p_id, description: productDescription, quantity: quantityAvailable , price: price, expiry: expiryDate, prod_images: imageUrl });
-      // .select();
+      .insert({
+        name: productName,
+        prod_id: p_id,
+        description: productDescription,
+        quantity: quantityAvailable,
+        price: price,
+        expiry: expiryDate,
+        prod_images: imageUrl,
+        comm_id: comm_id.comm_id,
+      });
+    // .select();
 
     if (error) {
       console.error("Error storing image URL:", error);
@@ -68,11 +78,18 @@ const CreatePost = () => {
     const p_id = crypto.randomUUID();
     console.log(p_id);
     event.preventDefault();
-    if (!productName || !productDescription || !quantityAvailable|| !price || !expiryDate || !image) {
+    if (
+      !productName ||
+      !productDescription ||
+      !quantityAvailable ||
+      !price ||
+      // !expiryDate ||
+      !image
+    ) {
       alert("Please fill out all fields");
       return;
     }
-    console.log(image.type)
+    console.log(image.type);
     // if (!image.type.startsWith("image/")) {
     //   alert("Please upload an image file");
     //   return;
@@ -85,16 +102,15 @@ const CreatePost = () => {
     if (imagePath) {
       await storeImageUrl(imagePath);
     }
+    navigate(`/home/${comm_id.comm_id}`);
   };
 
   return (
     <div className="create-post-overlay">
       <div className="create-post-container">
         <h2>Create Post</h2>
-        
-        
+
         <form className="create-post-form">
-        
           <label htmlFor="product-name">Product Name:</label>
 
           <input
@@ -167,7 +183,9 @@ const CreatePost = () => {
             onChange={(e) => setImage(e.target.files[0])}
           />
 
-          <button type="submit" onClick={CreateNewPost}>Submit</button>
+          <button type="submit" onClick={CreateNewPost}>
+            Submit
+          </button>
         </form>
       </div>
     </div>

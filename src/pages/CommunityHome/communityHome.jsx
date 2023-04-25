@@ -23,7 +23,7 @@ export const CommunityHome = () => {
   const [userId, setUserId] = useState(null);
   const { phoneNumber, setPhoneNumber } = usePhoneNumber();
   useEffect(() => {
-    console.log("the global number is ", phoneNumber);
+    console.log("the global number is, in all-communities: ", phoneNumber);
 
     const fetchUserId = async () => {
       const { data: users, error } = await supabase

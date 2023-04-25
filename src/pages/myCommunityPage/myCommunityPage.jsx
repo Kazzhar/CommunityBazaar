@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 
 import EmptyList from "../../Components/common/EmptyList";
 
-import BlogList from "../../Components/JoinedCommunities/CommunityList/communityList";
+import BlogList from "../../Components/Community copy/CommunityList/communityList";
 
-import Header from "../../Components/JoinedCommunities/Header";
+import Header from "../../Components/Community copy/Header";
 
 import { supabase } from "../../config/supabaseClient";
 
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
-
+import { useNavigate } from "react-router-dom";
 import "./myCommunityPage.css";
 
 export const MyCommunityPage = () => {
+  const navigate = useNavigate();
   const [communities, setCommunities] = useState([]);
 
   const [userId, setUserId] = useState(null);
@@ -102,6 +103,7 @@ export const MyCommunityPage = () => {
 
         <div className="header-wrapper-1">
           <Header />
+          <button onClick={()=>navigate("/all-communities")}>go back to all communities</button>
         </div>
 
         {/* Blog List & Empty View */}

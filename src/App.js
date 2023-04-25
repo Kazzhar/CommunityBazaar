@@ -12,6 +12,7 @@ import { MyCommunityPage } from "./pages/myCommunityPage/myCommunityPage";
 import { CommunityHome } from "./pages/CommunityHome/communityHome";
 import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
 import { UserIdProvider } from "./Context/UserIdContext";
+import { UsersComm } from "./pages/LinkViewToComm";
 // import Payment from "./pages/Payment/payment";
 import Payment from "./pages/Payment/payment";
 import Profile from "./pages/ProfilePage/Profile"
@@ -33,13 +34,14 @@ function App() {
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/phone-auth" element={<PhoneAuth />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/create-post/:comm_id" element={<CreatePost />} />
               <Route path="/product/:prod_id" element={<Product />} />
+              <Route path="/home/:comm_id" element={<UsersComm />} />
               <Route path="/2d65d411-d402/my-communities" element={<MyCommunityPage />}/>
               <Route path="/all-communities" element={<CommunityHome/>}/>
               <Route path="/make-payment" element={<Payment/>}/>
               <Route path="/profile" element={<Profile/>} />
-              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart/:comm_id" element={<Cart />} />
             </Routes>
           </Router>
         </UserIdProvider>

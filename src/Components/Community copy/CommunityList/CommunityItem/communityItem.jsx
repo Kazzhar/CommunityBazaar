@@ -6,27 +6,27 @@ import "./communityItem.css";
 import { useEffect, useState } from "react";
 import { useUserId } from "../../../../Context/UserIdContext";
 import { v4 as uuidv4 } from "uuid"; // Import the UUID package
-// import { randomUUID } from "crypto";
-
+import { useNavigate } from "react-router-dom";
+import { usePhoneNumber } from "../../../../Context/PhoneNumberContext";
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const BlogItem = ({
   blog: {
     comm_id,
-
+    
     created_at,
-
+    
     location,
-
+    
     name,
-
+    
     user_id,
   },
   currUserId,
 }) => {
+  const navigate=useNavigate();
   const [authorName, setAuthorName] = useState("");
-  // const {userId, setUserId} = useUserId();
   console.log("this is inside the indidual comm page, userId:", currUserId);
   const fetchAuthorName = async () => {
     try {
@@ -54,15 +54,8 @@ const BlogItem = ({
 
   useEffect(() => {
     fetchAuthorName();
+    console.log(comm_id)
   }, []);
-
-  // useEffect(() => {
-  //   fetchAuthorName();
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("HASJOINED HASJOINED inside, the new useffect, hasJoined value changed:", hasJoined);
-  // }, [hasJoined]);
 
   return (
     <div className="blogItem-wrap-1">
@@ -76,7 +69,7 @@ const BlogItem = ({
             <p>{created_at.slice(0, 10)}</p>
           </div>
         </div>
-        <button className="join-button" >
+        <button className="join-button" onClick={()=>navigate(`/home/${comm_id}`)}>
           View
         </button>
       </footer>

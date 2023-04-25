@@ -21,25 +21,9 @@ const ProductItem = ({
     },
 }) => {
 
-// const bigInt = require('big-integer')
-
-// const id = prod_id;
-
-// // Remove hyphens from the UUID
-// const hexString = id.replace(/-/g, '');
-
-// // Convert the hexadecimal string to a BigInt
-// const bigIntValue = bigInt(`0x${hexString}`);
-
-// console.log(bigIntValue);
-
-
-
   const {addToCart, cartItems} = useContext(ShopContext)
-  // console.log(cartItems)
   
   const cartItemAmount = cartItems[prod_id]
-  // console.log(cartItemAmount)
 
   return (
     <div className="blogItem-wrap">
@@ -81,42 +65,6 @@ const ProductItem = ({
         <button className="product-cart" onClick={()=>addToCart(prod_id)}>
           Add to Cart ({cartItemAmount > 0 && <>{cartItemAmount}</>})
         </button>
-
-        
-
-        {/* <div className="blogItem-author">
-          <img src={authorAvatar} alt="avatar" />
-          <div>
-            <h6>{authorName}</h6>
-            <p>{createdAt}</p>
-          </div>
-        </div> */}
-        {/* <h3>{name}</h3>
-
-        <div className="price-quantity">
-          <p className="price">
-            Price: <Chip label={price} />
-          </p>
-          <p className="blogItem-quantity">Quantity: <Chip label={quantity} /></p>
-        </div>
-
-        <p className="blogItem-desc">{description}</p> */}
-        {/*can add to product page*/}
-        {/* <p class="quantity">
-          Quantity: 
-          <span class="quantity-value"> 
-            <Chip label={quantity} />
-          </span>
-        </p> 
-     
-        <p class="description">{description}</p>
-        */}
-
-
-        {/* <button className="comment-count" >Comments</button> */}
-        {/* <Link className="blogItem-link" to={`/blog/${prod_id}`}>
-          ➝
-        </Link> */}
       </footer>
     </div>
   );
