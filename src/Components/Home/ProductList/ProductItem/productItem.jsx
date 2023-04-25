@@ -79,8 +79,10 @@ const ProductItem = ({
           
         {/* <CommentForm productId={prod_id}/> */}
         <button className="product-cart" onClick={()=>addToCart(prod_id)}>
-          Add to Cart {cartItemAmount > 0 && <>{cartItemAmount}</>}
+          Add to Cart ({cartItemAmount > 0 && <>{cartItemAmount}</>})
         </button>
+
+        
 
         {/* <div className="blogItem-author">
           <img src={authorAvatar} alt="avatar" />

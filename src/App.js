@@ -13,29 +13,34 @@ import { PhoneNumberProvider } from "./Context/PhoneNumberContext";
 // import Payment from "./pages/Payment/payment";
 import Payment from "./pages/Payment/payment";
 import Profile from "./pages/ProfilePage/Profile"
+import ShopContextProvider from "./Context/ShopContext";
+import {Cart} from "./pages/Cart/cart";
 function App() {
   return (
     <div className="App">
-      <PhoneNumberProvider>
-        <Router>
-          {/* <Navbar /> */}
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            {/* <Route path="/home" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} /> */}
-            <Route path="/home" element={<Home />} />
-            <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/phone-auth" element={<PhoneAuth />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/product/:prod_id" element={<Product />} />
-            <Route path="/my-communities" element={<Community />}/>
-            <Route path="/community-home" element={<CommunityHome/>}/>
-            <Route path="/make-payment" element={<Payment/>}/>
-            <Route path="/profile" element={<Profile/>} />
-          </Routes>
-        </Router>
-      </PhoneNumberProvider>
+      <ShopContextProvider>
+        <PhoneNumberProvider>
+          <Router>
+            {/* <Navbar /> */}
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              {/* <Route path="/home" element={<Contact />} />
+              <Route path="/cart" element={<Cart />} /> */}
+              <Route path="/home" element={<Home />} />
+              <Route path="/signup" element={<SignUpForm />} />
+              <Route path="/phone-auth" element={<PhoneAuth />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/product/:prod_id" element={<Product />} />
+              <Route path="/my-communities" element={<Community />}/>
+              <Route path="/community-home" element={<CommunityHome/>}/>
+              <Route path="/make-payment" element={<Payment/>}/>
+              <Route path="/profile" element={<Profile/>} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </Router>
+        </PhoneNumberProvider>
+      </ShopContextProvider>
     </div>
   );
 }

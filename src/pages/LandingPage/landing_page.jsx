@@ -5,6 +5,7 @@ import Testimonials from '../../Components/LandingPage_comp/Testimonials';
 import Contact from '../../Components/LandingPage_comp/Contact'
 import './landing_page.css'
 export const LandingPage = () => {
+  
   return (
     <div className="App">
       <section id="home">

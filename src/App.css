@@ -19,10 +19,10 @@ body {
   color: orange;
 }
 
-button,
+/* button,
 input {
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 .container {
   max-width: 1140px;
@@ -564,10 +564,10 @@ nav {
   }
 }
 
-button,
+/* button,
 input {
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 .container {
   max-width: 1140px;

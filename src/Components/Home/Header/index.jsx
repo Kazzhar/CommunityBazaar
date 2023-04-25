@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import  logo from "../../../Assets/3(white).png" 
 import { useNavigate } from "react-router-dom";
+import {AiOutlineShoppingCart} from "react-icons/ai"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,7 +12,9 @@ const Header = () => {
       <span className="navbar-community-name">Community Name</span>
       <div className="navbar-links">
         <button onClick={() => navigate("/create-post")} className="navbar-link">Create Post</button>
+        <button onClick={() => navigate("/cart")} className='go-to-cart'> <AiOutlineShoppingCart/> Cart</button>
       </div>
+
     </nav>
   )
   

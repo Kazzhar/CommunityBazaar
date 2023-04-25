@@ -20,7 +20,7 @@ import { Link as PageChanger } from "react-router-dom";
 // import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 // import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { useNavigate } from "react-router-dom";
-import logo from "../../Assets/2.png"
+import logo from "../../Assets/1.png"
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
