@@ -76,7 +76,6 @@ const BlogItem = ({
             <p>{created_at.slice(0, 10)}</p>
           </div>
         </div>
-
         <button className="join-button" >
           View
         </button>
