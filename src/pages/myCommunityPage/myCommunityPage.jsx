@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import EmptyList from "../../Components/common/EmptyList";
 
@@ -8,20 +8,19 @@ import Header from "../../Components/Community/Header";
 
 import { supabase } from "../../config/supabaseClient";
 
-import { useEffect } from "react";
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
-import { useNavigate } from "react-router-dom";
-import "./communityHome.css";
 
-// export const CommunityHome = () => {
-//   const [communities, setCommunities] = useState([]);
-//   const {phoneNumber, setPhoneNumber} = usePhoneNumber();
+import "./myCommunityPage.css";
 
-export const CommunityHome = () => {
-  const navigate=useNavigate();
+export const MyCommunityPage = () => {
   const [communities, setCommunities] = useState([]);
+
   const [userId, setUserId] = useState(null);
+
+  const [userCommunities, setUserCommunities] = useState([]);
+
   const { phoneNumber, setPhoneNumber } = usePhoneNumber();
+
   useEffect(() => {
     console.log("the global number is ", phoneNumber);
 
@@ -45,28 +44,54 @@ export const CommunityHome = () => {
       }
     };
 
-    fetchUserId();
+    const fetchUserCommunities = async () => {
+      const { data: userComm, error } = await supabase
 
-    const fetchCommunities = async () => {
-      const { data: communities, error } = await supabase
+        .from("user_comm")
 
-        .from("communities")
+        .select("c_id")
 
-        .select("*");
+        .eq("u_id", userId)
+
+        .single();
 
       if (error) {
         console.log(error);
       } else {
-        console.log(communities);
+        console.log("User Communities:", userComm.c_id);
 
-        setCommunities(communities);
+        setUserCommunities(userComm.c_id);
       }
     };
 
-    console.log(communities);
+    const fetchCommunities = async () => {
+      if (userCommunities.length > 0) {
+        const { data: communities, error } = await supabase
 
-    fetchCommunities();
-  }, []);
+          .from("communities")
+
+          .select("*")
+
+          .in("comm_id", userCommunities);
+
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(communities);
+
+          setCommunities(communities);
+        }
+      }
+    };
+
+    fetchUserId().then(() => {
+      if (userId) {
+        fetchUserCommunities().then(() => {
+          fetchCommunities();
+        });
+      }
+    });
+  }, [userId, userCommunities]);
 
   console.log("the global user id is now :", userId);
 
@@ -76,10 +101,7 @@ export const CommunityHome = () => {
         {/* Page Header */}
 
         <div className="header-wrapper-1">
-          <div className="header-content">
-            <Header />
-            <button className="mycomm-button" onClick={()=>navigate("/2d65d411-d402/my-communities")}>My Communities</button>
-          </div>
+          <Header />
         </div>
 
         {/* Blog List & Empty View */}
