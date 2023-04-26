@@ -16,7 +16,7 @@ const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch}) => (
           // handleLiveSearch(event);
         }} 
       />
-      {value && <span onClick={clearSearch}>X</span>}
+      {value && <button onClick={clearSearch}>X</button>}
       <button>Go</button>
     </form>
   </div>

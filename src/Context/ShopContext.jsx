@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { supabase } from '../config/supabaseClient'
-import { Home } from '../pages/CommunityProducts/home'
 
 export const ShopContext = createContext(null)
 // let [products, setProducts]=useState([]);

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Chip from "../../../common/Chip";
 import "./productItem.css";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
-import CommentForm from "../Comments/comments";
+// import CommentForm from "../Comments/comments";
 import { ShopContext } from "../../../../Context/ShopContext";
 import { supabase } from "../../../../config/supabaseClient";
-
+import { useEffect } from "react";
 const ProductItem = ({
     product: {
       prod_id,
@@ -20,47 +20,39 @@ const ProductItem = ({
       categories,
       comments,
       votes,
+      user_id,
     },
-}) => {
-
-// const bigInt = require('big-integer')
-
-// const id = prod_id;
-
-// // Remove hyphens from the UUID
-// const hexString = id.replace(/-/g, '');
-
-// // Convert the hexadecimal string to a BigInt
-// const bigIntValue = bigInt(`0x${hexString}`);
-
-// console.log(bigIntValue);
-
+}, comm_id) => {
 
   const {addToCart, cartItems} = useContext(ShopContext)
-  // console.log(cartItems)
   
   const cartItemAmount = cartItems[prod_id]
   // console.log(cartItemAmount)
 
   const [vote, setVote] = useState(votes);
+  const [userDetails, setUserDetails] = useState({ phone_number: "", user_name: "" });
 
-  // // Update votes in the database when upvote or downvote button is clicked
-  // const handleVote = async (increment) => {
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from('products')
-  //       .update({ votes: vote + increment })
-  //       .match({ prod_id });
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("users")
+          .select("*")
+          .eq("id", user_id)
+          .single();
 
-  //     if (error) {
-  //       throw error;
-  //     }
+        if (error) {
+          throw error;
+        }
 
-  //     setVote(data[0].votes);
-  //   } catch (error) {
-  //     console.log('Error updating votes:', error.message);
-  //   }
-  // };
+        setUserDetails(data);
+      } catch (error) {
+        console.log("Error fetching user details:", error.message);
+      }
+    };
+
+    fetchUserDetails();
+  }, [user_id]);
 
 
   return (
@@ -98,51 +90,17 @@ const ProductItem = ({
                   <FaArrowAltCircleDown className="downvote-icon" />
               </button>
           </div>
-
-
-
           
         {/* <CommentForm productId={prod_id}/> */}
         <button className="product-cart" onClick={()=>addToCart(prod_id)}>
-          Add to Cart ({cartItemAmount > 0 && <>{cartItemAmount}</>})
+          Add to Cart {cartItemAmount > 0 && <p>{cartItemAmount}</p>}
         </button>
-
         
-
-        {/* <div className="blogItem-author">
-          <img src={authorAvatar} alt="avatar" />
-          <div>
-            <h6>{authorName}</h6>
-            <p>{createdAt}</p>
-          </div>
-        </div> */}
-        {/* <h3>{name}</h3>
-
-        <div className="price-quantity">
-          <p className="price">
-            Price: <Chip label={price} />
-          </p>
-          <p className="blogItem-quantity">Quantity: <Chip label={quantity} /></p>
-        </div>
-
-        <p className="blogItem-desc">{description}</p> */}
-        {/*can add to product page*/}
-        {/* <p class="quantity">
-          Quantity: 
-          <span class="quantity-value"> 
-            <Chip label={quantity} />
-          </span>
-        </p> 
-     
-        <p class="description">{description}</p>
-        */}
-
-
-        {/* <button className="comment-count" >Comments</button> */}
-        {/* <Link className="blogItem-link" to={`/blog/${prod_id}`}>
-          ➝
-        </Link> */}
       </footer>
+      <div>
+        <p>Seller: {userDetails.user_name}</p>
+        <p>Phone Number: +{userDetails.phone_number}</p>
+        </div>
     </div>
   );
 };

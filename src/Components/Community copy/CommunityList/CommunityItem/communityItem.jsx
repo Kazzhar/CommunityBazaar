@@ -6,31 +6,38 @@ import "./communityItem.css";
 import { useEffect, useState } from "react";
 import { useUserId } from "../../../../Context/UserIdContext";
 import { v4 as uuidv4 } from "uuid"; // Import the UUID package
-// import { randomUUID } from "crypto";
-import {MdLocationPin} from "react-icons/md"
-
+import { useNavigate } from "react-router-dom";
+import { usePhoneNumber } from "../../../../Context/PhoneNumberContext";
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 const BlogItem = ({
   blog: {
     comm_id,
+    
     created_at,
+    
     location,
+    
     name,
+    
     user_id,
   },
   currUserId,
 }) => {
+  const navigate=useNavigate();
   const [authorName, setAuthorName] = useState("");
-  // const {userId, setUserId} = useUserId();
   console.log("this is inside the indidual comm page, userId:", currUserId);
   const fetchAuthorName = async () => {
     try {
-      const { data, error } = await supabase  
+      const { data, error } = await supabase
+
         .from("users")
+
         .select("user_name")
+
         .eq("id", user_id)
+
         .single();
 
       if (error) {
@@ -47,37 +54,25 @@ const BlogItem = ({
 
   useEffect(() => {
     fetchAuthorName();
+    console.log(comm_id)
   }, []);
-
-  // useEffect(() => {
-  //   fetchAuthorName();
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("HASJOINED HASJOINED inside, the new useffect, hasJoined value changed:", hasJoined);
-  // }, [hasJoined]);
 
   return (
     <div className="blogItem-wrap-1">
-    
-      <div className="left-element">
-        <div className="community-title">
-          <h3>{name}</h3>
-          <p className="location"><MdLocationPin/> {location}</p>
-        </div>
+      <h3 className="h3-wala">{name}</h3>
+      <h5 className="location">{location}</h5>
 
+      <footer>
         <div className="blogItem-author-1">
-            <h4>Admin: {authorName}</h4>
-            <p>Created on: {created_at.slice(0, 10)}</p>  
+          <div>
+            <h6>{authorName}</h6>
+            <p>{created_at.slice(0, 10)}</p>
+          </div>
         </div>
-      </div>
-        
-      <div className="right-element">
-        <button className="join-button">
-          VIEW
+        <button className="join-button" onClick={()=>navigate(`/home/${comm_id}`)}>
+          View
         </button>
-      </div>
-      
+      </footer>
     </div>
   );
 };

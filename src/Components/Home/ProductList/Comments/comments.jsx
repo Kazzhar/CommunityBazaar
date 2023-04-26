@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../../../config/supabaseClient';
 import "./comments.css"
+import {FaUserCircle} from "react-icons/fa"
 
 function CommentForm(props) {
   const [comment, setComment] = useState('');
@@ -76,10 +77,9 @@ function CommentForm(props) {
         </button>
         </div>
         
-
         <div className='all-comments'>
         {comments.map((comment, index) => (
-          <div className="single-comment" key={index}>{comment}</div>
+          <div className="single-comment" key={index}> <FaUserCircle/> {comment}</div>
         ))}
         </div>
             

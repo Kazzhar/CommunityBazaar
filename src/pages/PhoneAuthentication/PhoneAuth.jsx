@@ -6,7 +6,6 @@ import "./PhoneAuth.css";
 import { createClient } from "@supabase/supabase-js";
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
 import { supabase } from "../../config/supabaseClient";
-import CreatePost from "../CreatePost/create-post";
 
 function PhoneAuth() {
   const navigate = useNavigate();

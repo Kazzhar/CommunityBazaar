@@ -8,7 +8,9 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <nav className="header-navbar">
+      <a href="/">
       <img src={logo} alt="Logo" className="navbar-logo" />
+      </a>
       <span className="navbar-community-name">All Communities</span>
       <div className="navbar-links">
       <button className="mycomm-button" onClick={()=>navigate("/2d65d411-d402/my-communities")}>My Communities</button>

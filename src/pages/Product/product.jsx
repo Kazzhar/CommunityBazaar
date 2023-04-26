@@ -13,6 +13,7 @@ import Header from "../../Components/Home/Header";
 
 export const Product = () => {
   const { prod_id } = useParams();
+  // const {comm_id} = useParams();
   console.log(prod_id)
   const [fetchError, setFetchError] = useState(null)
   const [products, setProducts] = useState(null)
@@ -48,10 +49,10 @@ export const Product = () => {
     <div className="header-wrapper">
           <Header className="home-header"/>
         </div>
-      <Link className="blog-goBack" to="/home">
+      {/* <Link className="blog-goBack" to="/home">
         <span> &#8592;</span>
         <span>Go Back</span>
-      </Link>
+      </Link> */}
       {products ? (
         <div className="products-wrap">
   <div className="blog-wrap">

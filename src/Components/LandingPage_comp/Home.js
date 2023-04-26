@@ -26,7 +26,7 @@ const Home = () => {
           community. Signup now to get started with your own business. {/* add some nice content */}
           </p>
           <button className="secondary-button" onClick={() => navigate('/login')}>
-            Sign Up <FiArrowRight />
+            Log In <FiArrowRight />
           </button>
         </div>
         <div className='home-image-container'>

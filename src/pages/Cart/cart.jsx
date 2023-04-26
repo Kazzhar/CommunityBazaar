@@ -4,10 +4,12 @@ import { ShopContext } from '../../Context/ShopContext'
 import CartItem from './cart-item'
 import "./cart.css"
 import  logo from "../../Assets/3(white).png" 
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import Payment from '../Payment/payment'
 
 export const Cart = () => {
+  const comm_id=useParams()
+  console.log("this is from inside the cart, your comm_id is:", comm_id)
   const navigate = useNavigate();
   const {cartItems, getTotalCartAmount} = useContext(ShopContext)
   const totalAmount = getTotalCartAmount();
@@ -39,12 +41,15 @@ export const Cart = () => {
   return (
     <div className="cart">
     <nav className="header-navbar">
+      <a href="/">
       <img src={logo} alt="Logo" className="navbar-logo" />
+      </a>
       <span className="navbar-community-name1"><b>Your Cart Items</b></span>
       <div className="navbar-links">
-        {/* <button onClick={() => navigate("/create-post")} className="navbar-link">Create Post</button> */}
       </div>
     </nav>
+    <div>To buy the items offline, please contact the sellers individually from the details enlisted in your community page</div>
+
         <div className='cart-items'>
             {products.map((product)=>{
                 if(cartItems[product.prod_id] > 0) {
@@ -56,16 +61,13 @@ export const Cart = () => {
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ₹{totalAmount} </p>
-          <button onClick={() => navigate("/home")}> Continue Shopping </button>
+          <button onClick={() => navigate(`/home/${comm_id.comm_id}`)}> Continue Shopping </button>
           <p> Checkout: <Payment className="payments"/></p>
-          {/* <button onClick={() => navigate("/make-payment")}>
-            Checkout
-          </button> */}
         </div>
       ) : (
         <div className="checkout1">
         <h3> Your Shopping Cart is Empty</h3>
-        <button onClick={()=>navigate("/home")}>Continue Shopping</button>
+        <button onClick={()=>navigate(`/home/${comm_id.comm_id}`)}>Continue Shopping</button>
         </div>
       )}
     </div>
