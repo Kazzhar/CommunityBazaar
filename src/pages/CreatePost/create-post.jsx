@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { supabase } from "../../config/supabaseClient";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { usePhoneNumber } from "../../Context/PhoneNumberContext";
 import "./create-post.css";
 
 const CreatePost = () => {
   const comm_id = useParams();
   console.log("comm id from inside create post, from header:", comm_id.comm_id);
+  const { phoneNumber, setPhoneNumber } = usePhoneNumber();
+  console.log(
+    "this is from inside create post, this is the phone num:",
+    phoneNumber
+  );
   const [productName, setProductName] = useState("");
 
   const [productDescription, setProductDescription] = useState("");
@@ -48,24 +53,34 @@ const CreatePost = () => {
   };
   // export var curr_user;
 
-  const storeImageUrl = async (imagePath) => {
+  const storeImageUrl = async (imagePath, phoneNumber) => {
     const imageUrl = `https://pibocyssfkqnnshfrnnc.supabase.co/storage/v1/object/public/product_images/${imagePath}`;
 
     const p_id = crypto.randomUUID();
+    console.log("phoneNumber inside the storeImage func is: ", phoneNumber);
 
-    const { error } = await supabase
-      .from("products")
-      .insert({
-        name: productName,
-        prod_id: p_id,
-        description: productDescription,
-        quantity: quantityAvailable,
-        price: price,
-        expiry: expiryDate,
-        prod_images: imageUrl,
-        comm_id: comm_id.comm_id,
-      });
-    // .select();
+    const { data: userData, error: userError } = await supabase
+      .from("users")
+      .select("id")
+      .eq("phone_number", phoneNumber)
+      .single();
+
+    if (userError) {
+      console.error("Error retrieving user data:", userError);
+      return;
+    }
+
+    const { error } = await supabase.from("products").insert({
+      name: productName,
+      prod_id: p_id,
+      description: productDescription,
+      quantity: quantityAvailable,
+      price: price,
+      expiry: expiryDate,
+      prod_images: imageUrl,
+      comm_id: comm_id.comm_id,
+      user_id: userData.id,
+    });
 
     if (error) {
       console.error("Error storing image URL:", error);
@@ -100,7 +115,7 @@ const CreatePost = () => {
     const imagePath = await uploadImage(image);
 
     if (imagePath) {
-      await storeImageUrl(imagePath);
+      await storeImageUrl(imagePath, phoneNumber);
     }
     navigate(`/home/${comm_id.comm_id}`);
   };

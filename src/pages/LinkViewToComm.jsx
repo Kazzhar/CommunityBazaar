@@ -6,7 +6,7 @@ import SearchBar from "../Components/Home/SearchBar";
 import { useParams } from "react-router";
 import { supabase } from "../config/supabaseClient";
 import { useEffect } from "react";
-
+import "./LinkViewToComm.css"
 export const UsersComm= () => {
   const {comm_id} = useParams();
   console.log("comm_id from my communities inside the home page is:", comm_id)
