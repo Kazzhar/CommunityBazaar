@@ -1,7 +1,5 @@
 import React from "react";
-
 import BlogItem from "./CommunityItem/communityItem";
-
 import "./communityList.css";
 
 const BlogList = ({ blogs, userId }) => {

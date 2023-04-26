@@ -8,7 +8,7 @@ import "./product.css";
 import { Link } from "react-router-dom";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
 import CommentForm from "../../Components/Home/ProductList/Comments/comments";
-
+import Header from "../../Components/Home/Header";
 // import ProductList from "../../Components/Home/ProductList/productList";
 
 export const Product = () => {
@@ -45,67 +45,57 @@ export const Product = () => {
 
   return (
     <React.Fragment>
+    <div className="header-wrapper">
+          <Header className="home-header"/>
+        </div>
       <Link className="blog-goBack" to="/home">
         <span> &#8592;</span>
         <span>Go Back</span>
       </Link>
       {products ? (
         <div className="products-wrap">
-          <div className="blog-wrap">
-
-            <div>
-              <img src={products.prod_images} alt="cover" />
+  <div className="blog-wrap">
+    <div className="blog-image">
+      <img src={products.prod_images} alt="cover" />
+      <div className="votes-container">
+        <p className="upvote-container">
+          <FaArrowAltCircleUp className="upvote-icon" />
+        </p>
+        <p className="vote-count">10</p>
+        <p className="downvote-container">
+          <FaArrowAltCircleDown className="downvote-icon" />
+        </p>
+      </div>
+    </div>
+    <div className="blog-details">
+    <div className="price-name-1">
+      <h1 className="product-name">{products.name}</h1>
+      <p class="product-price">
+        <FaRupeeSign /> {products.price}
+      </p>
+    </div>
+      
+      {products.categories && (
+        <div className="product-category">
+          {products.categories.map((category, i) => (
+            <div className="category" key={i}>
+              <Chip label={category} />
             </div>
-
-            <div>
-              <h1 className="product-name">{products.name}</h1>
-              <p class="product-price"> <FaRupeeSign/> {products.price} </p>
-              {products.categories && (
-                <div className="product-category">
-                {products.categories.map((category, i)=>(
-                  <div className="category" key={i}>
-                    <Chip label={category} />
-                  </div>
-                ))}
-                </div>
-              )}
-              <p className="blog-quantity">Quantity: {products.quantity}</p>
-              <p className="blog-desc">{products.description}</p>
-              {products.expiry && <p className="blog-expiry">Expires on: {products.expiry}</p>}
-              
-            </div>
-
-
-            {/* <header> */}
-              
-              {/* <div className="blog-subCategory">
-                {products.subCategory.map((category, i) => (
-                  <div key={i}>
-                    <Chip label={category} />
-                  </div>
-                ))}
-              </div> */}
-            {/* </header> */}
-            <div className="votes-container">
-              <p className="upvote-container">
-                <FaArrowAltCircleUp className="upvote-icon" />
-              </p>
-              <p className="vote-count">10</p>
-              <p className="downvote-container">
-                  <FaArrowAltCircleDown className="downvote-icon" />
-              </p>
-            </div>
-
-          </div>
-
-          <div className="product-comment1">
-            <CommentForm productId={prod_id}/>
-          </div>
-
-          
-          
-          <p className="blog-date">Published on {products.created_at}</p>
+          ))}
         </div>
+      )}
+      <p className="blog-quantity">Quantity: {products.quantity}</p>
+      <p className="blog-desc">{products.description}</p>
+      {products.expiry && (
+        <p className="blog-expiry">Expires on: {products.expiry}</p>
+      )}
+      <p className="blog-date">Published on {products.created_at}</p>
+    </div>
+  </div>
+  <div className="product-comment">
+      <CommentForm productId={prod_id} />
+    </div>
+</div>
       ) : (
         <EmptyList />
       )}

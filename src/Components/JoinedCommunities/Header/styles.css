@@ -1,36 +1,61 @@
-.home-header {
-  text-align: center;
-  /* margin-top: 60px; */
-  padding: 2rem 0;
+.header-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+  margin: 0;
+  height: 10vh;
+  width: 100;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.home-header-title {
-  font-size: 3rem;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
 
+.navbar-logo {
+  height: 5rem;
+  /* padding: .3rem; */
+  margin: .5rem;
+}
+
+.navbar-community-name {
+  font-weight: 600;
+  font-size: 1.5rem;
   color: #eb9823;
-
-  margin-bottom: 1rem;
 }
 
-.home-header-quote {
-  color: #eb9823;
-
-  font-size: 2rem;
-
-  margin-bottom: 1rem;
+.navbar-links {
+  display: flex;
 }
 
-.quote-mark {
-  color: #b0c4de;
+.navbar-link {
+  margin-right: 2rem;
+  background-color: #eb9823;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
-.home-header-description {
-  color: #a9a9a9;
+.navbar-link:hover {
+  text-decoration: underline;
+}
 
-  font-weight: 500;
-
-  line-height: 1.5;
-
-  /* margin-bottom: 2rem; Increase bottom margin */
-
+.go-to-cart {
+  width: 100px;
+    height: 40px;
+    background-color: rgb(19, 19, 19);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0;
+    /* padding: 10px; */
+    cursor: pointer;
+    font-size: 20px;
 }

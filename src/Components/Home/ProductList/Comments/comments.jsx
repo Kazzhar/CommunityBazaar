@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../../../config/supabaseClient';
+import "./comments.css"
 
 function CommentForm(props) {
   const [comment, setComment] = useState('');
@@ -59,10 +60,12 @@ function CommentForm(props) {
   };
 
   return (
+    <div className='comments-section'>
       <div className="comment-area">
         {/* <label> */}
           <input 
             type="comment-text" 
+            className='comment-text'
             value={comment} 
             onChange={(event) => setComment(event.target.value)} />
         {/* </label> */}
@@ -71,12 +74,14 @@ function CommentForm(props) {
             type="comment-button" 
             onClick={handleSubmit}>Comment
         </button>
+        </div>
+        
 
         <div className='all-comments'>
         {comments.map((comment, index) => (
-          <div key={index}>{comment}</div>
+          <div className="single-comment" key={index}>{comment}</div>
         ))}
-      </div>
+        </div>
             
       </div>
   );

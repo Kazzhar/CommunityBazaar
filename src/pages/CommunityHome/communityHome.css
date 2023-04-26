@@ -6,97 +6,39 @@
 
 .community-home-1 {
   display: flex;
-
   flex-direction: column;
 }
 
-.header-wrapper-1 {
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  height: 20vh;
-
-  width: 100%;
-
-  background: #f6f6f6;
-
-  color: #000;
-
-  text-align: center;
-
-  padding: 0 1rem;
-
-  font-weight: 700;
-}
-.header-content {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  width: 100%;
-
-  max-width: 1200px; /* Adjust this value according to your layout */
-
-  margin: 0 auto;
-
-  padding: 10px;
-
-  position: relative;
-}
+/* . */
 
 .header-content::before {
   content: "";
-
   display: block;
-
   position: absolute;
-
   left: 0;
-
   top: 50%;
-
   width: 100%;
-
   height: 1px;
-
   background-color: #ccc; /* Change this color to match your design */
-
   z-index: -1;
 }
 
 .mycomm-button {
-  background-color: green; /* Change this color to match your theme */
-
-  border: none;
-
+  width: 150px;
+  height: 50px;
+  background-color: rgb(19, 19, 19);
   color: white;
-
-  text-align: center;
-
-  text-decoration: none;
-
-  display: inline-block;
-
-  font-size: 16px;
-
-  margin: 4px 2px;
-
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
   cursor: pointer;
-
-  border-radius: 4px;
-
-  padding: 10px 20px;
-
-  transition: background-color 0.3s ease;
 }
 
 .mycomm-button:hover {
-  background-color: #45a049; /* Change this color to a slightly darker shade of your theme color */
+  background-color: #eb9823; 
+  font-size: 15px;
+  font-weight: 600;
+  /* border: 1px solid rgb(19, 19, 19);  */
+  /* color: black; */
+  /* Change this color to a slightly darker shade of your theme color */
 }

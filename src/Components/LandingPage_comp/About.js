@@ -19,14 +19,12 @@ const About = () => {
                 Growth By The People For The People
             </h1>
             <p className='primary-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            neque mauris, congue pulvinar porttitor nec, rutrum nec ante.
-             {/* add about us later */}
+            At CommunityBazaar, we believe in the power of local connections and the importance of supporting small businesses within our communities. Our mission is to create a vibrant online marketplace that brings together local businesses and individuals, making it easy for community members to discover, connect, and shop from their neighbors.             {/* add about us later */}
             </p>
-            <p className='primary-text'>
+            {/* <p className='primary-text'>
             Vivamus sit amet nisi diam. Phasellus et porttitor nisi. Nulla
             ullamcorper feugiat turpis 
-            </p>
+            </p> */}
             <div className='about-buttons-container'>
                 <button className='secondary-button'>Learn More</button>
             </div>

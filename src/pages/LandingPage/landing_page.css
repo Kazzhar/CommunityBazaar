@@ -42,7 +42,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 85vw;
+  width: 100vw;
   min-height: 100px;
 }
 
@@ -60,11 +60,14 @@ body {
 .navbar-links-container {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  margin-left: 90px;
+  margin-top: 0;
 }
 
 .navbar-links-container a {
   margin-right: 3rem;
+  /* margin-left: 90px; */
   text-decoration: none;
   color: black;
   background-color: #fe9e0d;
@@ -83,17 +86,26 @@ body {
 
 
 .primary-button {
-  padding: 0.9rem 1.75rem;
+  font-size: 15px;
+  width: 150px;
+    height: 50px;
+    background-color: rgb(19, 19, 19);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+  /* padding: 0.9rem 1.75rem;
   background-color: white;
-  text-align: center;
+  text-align: center; */
   /* margin-top: none; */
-  outline: none;
+  /* outline: none;
   border: none;
   border-radius: 5rem;
   font-size: 1.1rem;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.2s;
+  transition: 0.2s; */
 }
 
 .navbar-cart-icon {
@@ -143,9 +155,18 @@ body {
   max-width: 600px;
 }
 
+
+.primary-heading1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #4c4c4c;
+  /* line-height: 5rem; */
+  max-width: 600px;
+  text-align: center;
+}
+
 .primary-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
-  max-width: 500px;
+  max-width: 600px;
   color: #6a6a6a;
   margin: 1.5rem 0rem;
 }
@@ -332,9 +353,14 @@ body {
 .testimonial-section-bottom p {
   font-weight: 700;
   color: #515151;
-  max-width: 500px;
-  font-size: 1.1rem;
+  max-width: 600px;
+  font-size: 1rem;
   margin: 2rem 0rem;
+}
+
+.testimonial-section-bottom img {
+  width: 150px;
+  border-radius: 70px;
 }
 
 .testimonials-stars-container svg {
@@ -416,9 +442,10 @@ body {
   }
 }
 
-/* .nav-logo-container {
-  width: 100px;
-} */
+.nav-logo-container {
+  margin-top: 20px;
+  width: 220px;
+}
 
 @media (max-width: 800px) {
   .nav-logo-container {
@@ -469,6 +496,17 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 4rem;
+  }
+
+  .navbar-sign {
+    width: 150px;
+    height: 50px;
+    background-color: rgb(19, 19, 19);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
   }
 
   .secondary-button {
@@ -526,6 +564,7 @@ body {
     padding: 0.5rem 1rem !important;
     margin-bottom: 0.8rem !important;
     text-align: center;
+    border: none ;
   }
 
   .footer-wrapper {

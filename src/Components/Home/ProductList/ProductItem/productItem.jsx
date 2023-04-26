@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Chip from "../../../common/Chip";
 import "./productItem.css";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
 import CommentForm from "../Comments/comments";
 import { ShopContext } from "../../../../Context/ShopContext";
+import { supabase } from "../../../../config/supabaseClient";
 
 const ProductItem = ({
     product: {
@@ -17,7 +18,8 @@ const ProductItem = ({
       expiry,
       prod_images,
       categories,
-      comments
+      comments,
+      votes,
     },
 }) => {
 
@@ -34,12 +36,32 @@ const ProductItem = ({
 // console.log(bigIntValue);
 
 
-
   const {addToCart, cartItems} = useContext(ShopContext)
   // console.log(cartItems)
   
   const cartItemAmount = cartItems[prod_id]
   // console.log(cartItemAmount)
+
+  const [vote, setVote] = useState(votes);
+
+  // // Update votes in the database when upvote or downvote button is clicked
+  // const handleVote = async (increment) => {
+  //   try {
+  //     const { data, error } = await supabase
+  //       .from('products')
+  //       .update({ votes: vote + increment })
+  //       .match({ prod_id });
+
+  //     if (error) {
+  //       throw error;
+  //     }
+
+  //     setVote(data[0].votes);
+  //   } catch (error) {
+  //     console.log('Error updating votes:', error.message);
+  //   }
+  // };
+
 
   return (
     <div className="blogItem-wrap">
@@ -51,7 +73,7 @@ const ProductItem = ({
         <p className="price"> <FaRupeeSign/> {price} </p>
       </div>
       
-      {categories && (
+      {categories ? (
       <div className="categories">
         {categories.map((category, i)=>(
           <div className="category" key={i}>
@@ -59,7 +81,7 @@ const ProductItem = ({
           </div>
       ))}
       </div>
-      )}
+      ) : <br/>}
         
         
         <img className="blogItem-cover" src={prod_images} alt="cover" />
@@ -68,14 +90,17 @@ const ProductItem = ({
       <footer className="product-footer">
         
           <div className="votes-container">
-              <p className="upvote-container">
+              <button className="upvote-container" onClick={()=>setVote(votes + 1)}>
                 <FaArrowAltCircleUp className="upvote-icon" />
-              </p>
-              <p className="vote-count">10</p>
-              <p className="downvote-container">
+              </button>
+              <p className="vote-count">{vote}</p>
+              <button className="downvote-container" onClick={()=>setVote(votes - 1)}>
                   <FaArrowAltCircleDown className="downvote-icon" />
-              </p>
+              </button>
           </div>
+
+
+
           
         {/* <CommentForm productId={prod_id}/> */}
         <button className="product-cart" onClick={()=>addToCart(prod_id)}>

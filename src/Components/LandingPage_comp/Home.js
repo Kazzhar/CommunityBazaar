@@ -21,10 +21,9 @@ const Home = () => {
             A Platform For Local Entrepreneurs {/* or something similar */}
           </h1>
           <p className="primary-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            neque mauris, congue pulvinar porttitor nec, rutrum nec ante.
-            Vivamus sit amet nisi diam. Phasellus et porttitor nisi. Nulla
-            ullamcorper feugiat turpis {/* add some nice content */}
+          We provide a platform specifically tailored for local businesses and
+          individuals, enabling people to sell their products and services within their
+          community. Signup now to get started with your own business. {/* add some nice content */}
           </p>
           <button className="secondary-button" onClick={() => navigate('/login')}>
             Sign Up <FiArrowRight />

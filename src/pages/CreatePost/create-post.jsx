@@ -1,8 +1,30 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { supabase } from "../../config/supabaseClient";
+// import Header from "./header";
 
 import "./create-post.css";
+
+// import React from 'react';
+// import './styles.css';
+import  logo from "../../Assets/3(white).png" 
+import { useNavigate } from "react-router-dom";
+import {AiOutlineShoppingCart} from "react-icons/ai"
+
+const Header = () => {
+  const navigate = useNavigate();
+  return (
+    <nav className="header-navbar">
+      <img src={logo} alt="Logo" className="navbar-logo" />
+      <span className="navbar-community-name1">Create Post</span>
+      <div className="navbar-links">
+        {/* <button onClick={() => navigate("/create-post")} className="navbar-link">Create Post</button>
+        <button onClick={() => navigate("/cart")} className='go-to-cart'> <AiOutlineShoppingCart/> Cart</button> */}
+      </div>
+
+    </nav>
+  )
+}
 
 const CreatePost = () => {
   const [productName, setProductName] = useState("");
@@ -90,7 +112,9 @@ const CreatePost = () => {
   return (
     <div className="create-post-overlay">
       <div className="create-post-container">
-        <h2>Create Post</h2>
+      <div className="header-wrapper">
+          <Header className="home-header"/>
+        </div>
         
         
         <form className="create-post-form">

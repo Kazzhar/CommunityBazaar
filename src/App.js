@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage/landing_page";
-import { Home } from "./pages/Home/home";
+import { Home } from "./pages/CommunityProducts/home";
 import { Product } from "./pages/Product/product";
 import SignUpForm from "./pages/SignUpPage/sign-up";
 import PhoneAuth from "./pages/PhoneAuthentication/PhoneAuth";

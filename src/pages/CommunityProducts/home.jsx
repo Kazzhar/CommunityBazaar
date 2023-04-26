@@ -37,9 +37,10 @@ export const Home = () => {
   const handleSearchResults = () => {
     const allProducts = products;
     console.log(products)
-    console.log(products.map((product)=>{
-      return product.categories
-    }))
+    // if(allProducts.categories == null) return
+    // console.log(products.map((product)=>{
+    //   return product.categories
+    // }))
     const checkCategory = (product) => {
       return product.categories.some(category => category === searchKey);
     };
@@ -67,9 +68,10 @@ export const Home = () => {
     if (error) {
       console.log(error);
     } else {
+      console.log(products)
       setProducts(products);
     }
-    setSearchKey("");
+    setSearchKey(" ");
   };
   
   return (

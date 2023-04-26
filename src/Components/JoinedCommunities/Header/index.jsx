@@ -1,21 +1,19 @@
 import React from "react";
-
+import { useNavigate } from "react-router";
 import "./styles.css";
+import  logo from "../../../Assets/3(white).png" 
 
-const Header = () => (
-  <header className="home-header">
-    <h1 className="home-header-title">Join your community!</h1>
-
-    <h2 className="home-header-quote">
-      <span className="quote-mark">“</span> Discover the hidden gems in your
-      community <span className="quote-mark">”</span>
-    </h2>
-
-    <p className="home-header-description">
-      Empowering local businesses, <br /> one transaction at a time
-
-    </p>
-  </header>
-);
+const Header = () => {
+  const navigate = useNavigate();
+  return (
+    <nav className="header-navbar">
+      <img src={logo} alt="Logo" className="navbar-logo" />
+      <span className="navbar-community-name">My Communities</span>
+      <div className="navbar-links">
+        <button onClick={() => navigate("/all-communities")} className="mycomm-button">All Communities</button>
+      </div>
+    </nav>
+  )
+}
 
 export default Header;

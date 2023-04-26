@@ -7,6 +7,7 @@
   /* font-family: "Raleway", sans-serif !important; */
 }
 
+
 *,
 *::after,
 *::before {
@@ -16,7 +17,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  color: orange;
+  /* color: orange; */
 }
 
 /* button,
@@ -47,6 +48,7 @@ img {
 body {
   max-width: 100%;
   overflow-x: hidden;
+  /* margin-bottom: 50px; */
 }
 
 body {

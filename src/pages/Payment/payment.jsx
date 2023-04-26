@@ -6,12 +6,10 @@ import React from 'react'
 
 export const Payment = () => {
   return (
-           <div className="App">
-<h1> Purchase This Item</h1>
-
-<GooglePayButton/>
-<GooglePayButton/>
-<GooglePayButton
+<div>
+{/* <GooglePayButton/> */}
+{/* <GooglePayButton/> */}
+<GooglePayButton className='google-pay-button'
   environment="TEST"
   paymentRequest={{
     apiVersion: 2,

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch, handleLiveSearch}) => (
+const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch}) => (
   <div className='searchBar-wrap'>
     <form onSubmit={formSubmit}>
       <input
@@ -13,9 +13,8 @@ const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch, handleLive
 
           // Call handleLiveSearch on every change
 
-          handleLiveSearch(event);
-        }}
-        
+          // handleLiveSearch(event);
+        }} 
       />
       {value && <span onClick={clearSearch}>X</span>}
       <button>Go</button>

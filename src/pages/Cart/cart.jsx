@@ -5,6 +5,8 @@ import CartItem from './cart-item'
 import "./cart.css"
 import  logo from "../../Assets/3(white).png" 
 import { useNavigate } from 'react-router'
+import Payment from '../Payment/payment'
+
 export const Cart = () => {
   const navigate = useNavigate();
   const {cartItems, getTotalCartAmount} = useContext(ShopContext)
@@ -31,6 +33,8 @@ export const Cart = () => {
     fetchProducts()
   }, [])
 
+  
+
   console.log(cartItems,"this is from inside cart")
   return (
     <div className="cart">
@@ -53,9 +57,10 @@ export const Cart = () => {
         <div className="checkout">
           <p> Subtotal: ₹{totalAmount} </p>
           <button onClick={() => navigate("/home")}> Continue Shopping </button>
-          <button>
+          <p> Checkout: <Payment className="payments"/></p>
+          {/* <button onClick={() => navigate("/make-payment")}>
             Checkout
-          </button>
+          </button> */}
         </div>
       ) : (
         <div className="checkout1">

@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-
 import EmptyList from "../../Components/common/EmptyList";
-
 import BlogList from "../../Components/Community/CommunityList/communityList";
-
 import Header from "../../Components/Community/Header";
-
 import { supabase } from "../../config/supabaseClient";
-
 import { useEffect } from "react";
 import { usePhoneNumber } from "../../Context/PhoneNumberContext";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +13,7 @@ import "./communityHome.css";
 //   const {phoneNumber, setPhoneNumber} = usePhoneNumber();
 
 export const CommunityHome = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [communities, setCommunities] = useState([]);
   const [userId, setUserId] = useState(null);
   const { phoneNumber, setPhoneNumber } = usePhoneNumber();
@@ -27,13 +22,9 @@ export const CommunityHome = () => {
 
     const fetchUserId = async () => {
       const { data: users, error } = await supabase
-
         .from("users")
-
         .select("id")
-
         .eq("phone_number", phoneNumber)
-
         .single();
 
       if (error) {
@@ -49,22 +40,17 @@ export const CommunityHome = () => {
 
     const fetchCommunities = async () => {
       const { data: communities, error } = await supabase
-
         .from("communities")
-
         .select("*");
 
       if (error) {
         console.log(error);
       } else {
         console.log(communities);
-
         setCommunities(communities);
       }
     };
-
     console.log(communities);
-
     fetchCommunities();
   }, []);
 
@@ -74,14 +60,10 @@ export const CommunityHome = () => {
     <React.Fragment>
       <div className="community-home-1">
         {/* Page Header */}
-
-        <div className="header-wrapper-1">
-          <div className="header-content">
-            <Header />
-            <button className="mycomm-button" onClick={()=>navigate("/2d65d411-d402/my-communities")}>My Communities</button>
-          </div>
+        <div className="header-wrapper">
+          <Header className="home-header" />
         </div>
-
+      
         {/* Blog List & Empty View */}
 
         {console.log(communities)}
