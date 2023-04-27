@@ -112,9 +112,9 @@ body {
   font-size: 1.15rem;
 }
 
-.primary-button:hover {
+/* .primary-button:hover {
   background-color: rgb(234, 234, 234);
-}
+} */
 
 .navbar-menu-container svg {
   font-size: 1.5rem;

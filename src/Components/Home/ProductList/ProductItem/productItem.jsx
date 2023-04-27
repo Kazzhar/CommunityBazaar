@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Chip from "../../../common/Chip";
 import "./productItem.css";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown, FaRupeeSign } from 'react-icons/fa';
+import {AiTwotonePhone } from 'react-icons/ai';
+import {IoMdContact } from 'react-icons/io';
+
 // import CommentForm from "../Comments/comments";
 import { ShopContext } from "../../../../Context/ShopContext";
 import { supabase } from "../../../../config/supabaseClient";
@@ -97,9 +100,9 @@ const ProductItem = ({
         </button>
         
       </footer>
-      <div>
-        <p>Seller: {userDetails.user_name}</p>
-        <p>Phone Number: +{userDetails.phone_number}</p>
+      <div className="user-info">
+        <p><IoMdContact className="icon"/> {userDetails.user_name}</p>
+        <p><AiTwotonePhone className="icon"/>+{userDetails.phone_number}</p>
         </div>
     </div>
   );

@@ -79,7 +79,7 @@ function CommentForm(props) {
         
         <div className='all-comments'>
         {comments.map((comment, index) => (
-          <div className="single-comment" key={index}> <FaUserCircle/> {comment}</div>
+          <div className="single-comment" key={index}> <FaUserCircle className='comment-icon'/> {comment}</div>
         ))}
         </div>
             

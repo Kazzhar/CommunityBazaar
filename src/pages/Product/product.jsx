@@ -58,15 +58,16 @@ export const Product = () => {
   <div className="blog-wrap">
     <div className="blog-image">
       <img src={products.prod_images} alt="cover" />
-      <div className="votes-container">
-        <p className="upvote-container">
-          <FaArrowAltCircleUp className="upvote-icon" />
-        </p>
-        <p className="vote-count">10</p>
-        <p className="downvote-container">
-          <FaArrowAltCircleDown className="downvote-icon" />
-        </p>
-      </div>
+
+      {/* <div className="votes-container">
+              <button className="upvote-container" onClick={()=>setVote(votes + 1)}>
+                <FaArrowAltCircleUp className="upvote-icon" />
+              </button>
+              <p className="vote-count">{vote}</p>
+              <button className="downvote-container" onClick={()=>setVote(votes - 1)}>
+                  <FaArrowAltCircleDown className="downvote-icon" />
+              </button>
+          </div> */}
     </div>
     <div className="blog-details">
     <div className="price-name-1">

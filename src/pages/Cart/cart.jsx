@@ -48,7 +48,7 @@ export const Cart = () => {
       <div className="navbar-links">
       </div>
     </nav>
-    <div>To buy the items offline, please contact the sellers individually from the details enlisted in your community page</div>
+    <div className='offline'>To buy the items offline, please contact the sellers individually from the details enlisted in your community page</div>
 
         <div className='cart-items'>
             {products.map((product)=>{

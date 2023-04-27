@@ -5,6 +5,12 @@
   padding: 30px;
 }
 
+.comment-icon {
+  font-size: 30px;
+  /* padding: 10px; */
+  margin-right: 15px;
+}
+
 .comment-area {
 display: flex;
   flex-direction: row;

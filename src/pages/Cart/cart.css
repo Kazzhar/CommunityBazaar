@@ -6,6 +6,13 @@
     align-items: center;
     /* margin: 20px; */
   }
+
+  .offline {
+    margin-top: 20px;
+    max-width: 50%;
+    text-align: center;
+    font-weight: 300;
+  }
   
   .cart-image {
     height: 250px;

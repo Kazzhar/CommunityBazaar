@@ -117,7 +117,8 @@ nav {
 }
 
 .primary-button:hover {
-  background-color: rgb(234, 234, 234);
+  background-color: #fe9e0d;
+  color: black;
 }
 
 .navbar-menu-container svg {

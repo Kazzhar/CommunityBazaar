@@ -34,12 +34,12 @@ const Header = ({ comm_id }) => {
       </a>
       <span className="navbar-community-name">{communityName}</span>
       <div className="navbar-links">
-        <button onClick={() => navigate("/2d65d411-d402/my-communities")}>
-          back to my communites
+        <button className="mycomm-button" onClick={() => navigate("/2d65d411-d402/my-communities")}>
+          All Communities
         </button>
         <button
           onClick={() => navigate(`/create-post/${comm_id}`)}
-          className="navbar-link"
+          className="mycomm-button"
         >
           Create Post
         </button>
@@ -48,7 +48,7 @@ const Header = ({ comm_id }) => {
           className="go-to-cart"
         >
           {" "}
-          <AiOutlineShoppingCart /> Cart
+          <AiOutlineShoppingCart />
         </button>
       </div>
     </nav>
